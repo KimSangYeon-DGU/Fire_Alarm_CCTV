@@ -7,6 +7,7 @@ This is the repository for 2018 OSS Grand Developers Challenge
 # Work lists
 <b>1. Gather the information</b>
 
+    - Check which Raspberry pi 3 model and camera fits the project
     - How to transplant deep learning model on Raspberry pi 3
     - Which deep learning model is used
     - Fire images
