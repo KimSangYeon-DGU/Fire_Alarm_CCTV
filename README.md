@@ -6,5 +6,5 @@ This is the repository for 2018 OSS Grand Developers Challenge
 
 # Work lists
 1. Gather the information
-  - How to import deep learning model on Raspberry pi 3
-  - Fire images
+    - How to import deep learning model on Raspberry pi 3
+    - Fire images
