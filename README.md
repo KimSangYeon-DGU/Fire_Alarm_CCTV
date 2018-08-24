@@ -9,8 +9,11 @@ This is the repository for 2018 OSS Grand Developers Challenge
 
     - Check which Raspberry pi model and camera fits the project
     - How to transplant deep learning model on Raspberry pi 3
+        - Check the link
     - Which deep learning model is used
     - Fire images
+    - What development environment you use to train the deep learning model
+        - I will use AWS EC2 P3 Instance on Windows 10
 
 # Useful Links
 - The mothod to transplant deep learning model on Raspberry pi 3
