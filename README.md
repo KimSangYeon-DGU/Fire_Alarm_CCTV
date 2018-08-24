@@ -15,6 +15,9 @@ This is the repository for 2018 OSS Grand Developers Challenge
 # Useful Links
 - The mothod to transplant deep learning model on Raspberry pi 3
     - https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi
+    
+# Useful info
+The TOD(TensorFlow Object Detection) on the Raspberry Pi run environments are Tensorflow 1.5, cudNN 7.0 and cuda 8.0(Those are the best setting without error)
 
 # Performance objectives
 The information should be gathered to decide performance of the CCTV, so I don't state it yet.
