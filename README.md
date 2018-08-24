@@ -8,4 +8,5 @@ This is the repository for 2018 OSS Grand Developers Challenge
 <b>1. Gather the information</b>
 
     - How to transplant deep learning model on Raspberry pi 3
+    - Which deep learning model use
     - Fire images
