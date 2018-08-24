@@ -5,6 +5,6 @@ This is the repository for 2018 OSS Grand Developers Challenge
 - It detects the fire situation and inform users of that. It shows the fire picture users so the user exactly can check it. It plan to use an artificial intelligence and an image processing methods.
 
 # Work lists
-1. Gather the information
+<b>1. Gather the information</b>
     - How to import deep learning model on Raspberry pi 3
     - Fire images
