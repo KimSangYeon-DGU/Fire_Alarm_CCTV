@@ -10,3 +10,6 @@ This is the repository for 2018 OSS Grand Developers Challenge
     - How to transplant deep learning model on Raspberry pi 3
     - Which deep learning model is used
     - Fire images
+
+# Performance objectives
+The information should be gathered to decide performance of the CCTV, so I don't state it yet.
