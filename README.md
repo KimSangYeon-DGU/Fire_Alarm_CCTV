@@ -8,7 +8,7 @@ This is the repository for 2018 OSS Grand Developers Challenge
 <b>1. Gather the information</b>
 
     - Check which Raspberry pi model and camera fits the project
-        - I decided to buy Raspberry pi 3 B+, as It improved by 17% than previous model, and pi camera because I heard that It use GPU to process image.
+        - I decided to buy Raspberry pi 3 B+, as It is improved by 17% than previous model, and pi camera because I heard that It use GPU to process image.
     - How to transplant deep learning model on Raspberry pi 3
         - Check the link
     - Which deep learning model is used
