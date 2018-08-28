@@ -13,6 +13,7 @@ This is the repository for 2018 OSS Grand Developers Challenge
         - Check the link
     - Which deep learning model is used
     - Fire images
+        - Use opened datasets, I assume that the number of images is 20,000 first.
     - What development environment you use to train the deep learning model
         - I will use AWS EC2 P3 Instance on Windows 10
 
