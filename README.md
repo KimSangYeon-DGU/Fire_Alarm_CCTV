@@ -16,6 +16,8 @@ This is the repository for 2018 OSS Grand Developers Challenge
         - Use opened datasets, I assume that the number of images is 20,000 first.
     - What development environment you use to train the deep learning model
         - I will use AWS EC2 P3 Instance on Windows 10
+        
+<b>2. Test Demo model on Raspberry Pi 3 B+</b>
 
 # Useful Links
 - The mothod to transplant deep learning model on Raspberry pi 3
