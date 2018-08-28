@@ -19,6 +19,8 @@ This is the repository for 2018 OSS Grand Developers Challenge
         
 <b>2. Test Demo model on Raspberry Pi 3 B+</b>
 
+<b>3. Make train dataset </b>
+
 # Useful Links
 - The mothod to transplant deep learning model on Raspberry pi 3
     - https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi
