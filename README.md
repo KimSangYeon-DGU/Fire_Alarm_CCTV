@@ -29,7 +29,9 @@ This is the repository for 2018 OSS Grand Developers Challenge
 
 <b>6. If needed, Increase a performance of the model
     
-<b>7. Make client application
+<b>7. Make server application
+  
+<b>8. Make client application
 
 # Useful Links
 - The mothod to transplant deep learning model on Raspberry pi 3
