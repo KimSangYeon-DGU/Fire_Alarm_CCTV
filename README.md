@@ -18,7 +18,8 @@ This is the repository for 2018 OSS Grand Developers Challenge
         - I will use AWS EC2 P3 Instance on Windows 10
         
 <b>2. Test Demo model on Raspberry Pi 3 B+</b>
-
+    - Succeeded run demo model on Raspberry Pi 3 B+, and the fps is about lower than 1.6
+    
 <b>3. Make train dataset </b>
 
 # Useful Links
