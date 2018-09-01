@@ -25,6 +25,12 @@ This is the repository for 2018 OSS Grand Developers Challenge
 
 <b>4. Train custom model</b>
 
+<b>5. Test model</b>
+
+<b>6. If needed, Increase a performance of the model
+    
+<b>7. Make client application
+
 # Useful Links
 - The mothod to transplant deep learning model on Raspberry pi 3
     - https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi
