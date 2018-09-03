@@ -21,7 +21,7 @@ This is the repository for 2018 OSS Grand Developers Challenge
 
     - Succeeded run demo model on Raspberry Pi 3 B+, and the fps is about lower than 1.6
     
-<b>3. Make train dataset</b>
+<b>3. Make train dataset</b> (Currently working)
 
 <b>4. Train custom model</b>
 
