@@ -9,6 +9,11 @@ This is the repository for 2018 OSS Grand Developers Challenge
     <img src="images/architecture.PNG", width="640">
 </p>
 
+# Timeline
+<p align="center">
+    <img src="images/gantt-chart.PNG", width="640">
+</p>
+
 # Work lists
 <b>1. Gather the information</b>
 
