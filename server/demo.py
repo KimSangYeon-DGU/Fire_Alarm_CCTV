@@ -13,7 +13,7 @@ def init():
     global host, img_file_path
     print("init")
 
-    addr = "your server ip"
+    addr = sock.gethostname()
     port = 9999
     host = (addr, port)
 
