@@ -11,7 +11,7 @@ This is the repository for 2018 OSS Grand Developers Challenge
 
 # Timeline
 <p align="center">
-    <img src="images/gantt-chart.png", width="1024">
+    <img src="images/gantt-chart.png", width="2048">
 </p>
 
 # Work lists
