@@ -6,7 +6,7 @@ This is the repository for 2018 OSS Grand Developers Challenge
 
 # Overall Architecture
 <p align="center">
-    <img src="images/architecture.png", width="480">
+    <img src="images/architecture.PNG", width="480">
 </p>
 
 # Work lists
