@@ -3,3 +3,6 @@
 
 # Function
 - Fire ditection and image tansfer
+
+# Used Language
+- Python2
