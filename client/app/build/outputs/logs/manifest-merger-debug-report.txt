@@ -1,0 +1,107 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:2:1-21:12
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\53026e7288a020f2edc04173cf87b1fc\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\cb1e6fbcb01151f2ecb58c5c335429e8\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\eab16b0258b2e93f159c95f00ab09397\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\ce0a2c6113ce76242b1adce88065230a\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\9d02d5520d0060e320304c92ba3a4ab6\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\3a9cfcf7c24ebf32a2aa8ef00413d65d\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\950b3268d057289bf173fca5f00f3500\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\8c2792f2b4b21503ba64fd2998bdfccd\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\f953e19215be340bf42c69aed41e8a51\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\6492109271380673b0a7bb107da5f765\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\00cd6f887dfcd757bc4c7fecdf03247e\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\1f5598860d67d04d9c2baee4636e8e34\AndroidManifest.xml:17:1-22:12
+INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:2:1-21:12
+	package
+		ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:3:5-39
+		INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:2:1-21:12
+		INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:2:1-21:12
+		INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:4:5-67
+	android:name
+		ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:4:22-64
+application
+ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:5:5-19:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\cb1e6fbcb01151f2ecb58c5c335429e8\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\cb1e6fbcb01151f2ecb58c5c335429e8\AndroidManifest.xml:9:5-20
+	android:supportsRtl
+		ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:10:9-35
+	android:label
+		ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:8:9-41
+	android:roundIcon
+		ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:9:9-54
+	android:icon
+		ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:7:9-43
+	android:allowBackup
+		ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:6:9-35
+	android:theme
+		ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:11:9-40
+activity#cctv.cse.com.cctv_client.MainActivity
+ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:12:9-18:20
+	android:name
+		ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:12:19-47
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:13:13-17:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:14:17-69
+	android:name
+		ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:14:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:16:17-77
+	android:name
+		ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml:16:27-74
+uses-sdk
+INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\53026e7288a020f2edc04173cf87b1fc\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\53026e7288a020f2edc04173cf87b1fc\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\cb1e6fbcb01151f2ecb58c5c335429e8\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\cb1e6fbcb01151f2ecb58c5c335429e8\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\eab16b0258b2e93f159c95f00ab09397\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\eab16b0258b2e93f159c95f00ab09397\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\ce0a2c6113ce76242b1adce88065230a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\ce0a2c6113ce76242b1adce88065230a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\9d02d5520d0060e320304c92ba3a4ab6\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\9d02d5520d0060e320304c92ba3a4ab6\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\3a9cfcf7c24ebf32a2aa8ef00413d65d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\3a9cfcf7c24ebf32a2aa8ef00413d65d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\950b3268d057289bf173fca5f00f3500\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\950b3268d057289bf173fca5f00f3500\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\8c2792f2b4b21503ba64fd2998bdfccd\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\8c2792f2b4b21503ba64fd2998bdfccd\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\f953e19215be340bf42c69aed41e8a51\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\f953e19215be340bf42c69aed41e8a51\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\6492109271380673b0a7bb107da5f765\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\6492109271380673b0a7bb107da5f765\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\00cd6f887dfcd757bc4c7fecdf03247e\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\00cd6f887dfcd757bc4c7fecdf03247e\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\1f5598860d67d04d9c2baee4636e8e34\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\sy081\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\1f5598860d67d04d9c2baee4636e8e34\AndroidManifest.xml:20:5-44
+INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\sy081\Desktop\workspace\Competitions\2018_OSS\Fire_Alarm_CCTV\client\app\src\main\AndroidManifest.xml
