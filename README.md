@@ -1,4 +1,4 @@
-# 2018 OSS_Fire_Alarm_CCTV
+# 2018 OSS Fire Alarm CCTV
 - This is the repository for 2018 OSS Grand Developers Challenge
 
 # What functionality has the CCTV?
