@@ -1,2 +1,5 @@
 # Server
-This is a server
+- This is a server
+
+# Function
+- Fire ditection and image tansfer
