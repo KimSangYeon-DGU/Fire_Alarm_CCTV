@@ -4,6 +4,11 @@ This is the repository for 2018 OSS Grand Developers Challenge
 # What functionality has the CCTV?
 - It detects the fire situation and inform users of that. It shows the fire picture users so the user exactly can check it. It plan to use an artificial intelligence and an image processing methods.
 
+# Overall Architecture
+<p align="center">
+    <img src="images/architecture.PNG", width="640">
+</p>
+
 # Work lists
 <b>1. Gather the information</b>
 
