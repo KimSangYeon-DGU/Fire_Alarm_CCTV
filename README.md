@@ -30,6 +30,8 @@
 <b>10. Communication between Raspberry Pi and Python server.
     
     - Should check if it is available for streaming images
+    
+<b>11. Make a final report and demonstration video</b>
 
 # Done
 <b>1. Gather the information</b>
