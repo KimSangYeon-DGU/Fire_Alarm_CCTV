@@ -1,4 +1,0 @@
-#Wed Sep 05 16:54:01 KST 2018
-base.0=C\:\\Users\\sy081\\Desktop\\workspace\\Competitions\\2018_OSS\\Fire_Alarm_CCTV\\client\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\4
-path.0=classes.dex
-renamed.0=classes.dex
