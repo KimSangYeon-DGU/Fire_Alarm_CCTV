@@ -14,7 +14,20 @@ This is the repository for 2018 OSS Grand Developers Challenge
     <img src="images/gantt-chart.png", width="1024", height="512">
 </p>
 
-# TODO List
+# TODO List        
+<b>4. Train custom model</b>
+
+<b>5. Test model</b>
+
+<b>6. If needed, Increase a performance of the model
+    
+<b>7. Make server application (currently working)
+  
+<b>8. Make client application
+    
+<b>9. System Test</b>
+
+# Done
 <b>1. Gather the information</b>
 
     - Check which Raspberry pi model and camera fits the project
@@ -31,24 +44,10 @@ This is the repository for 2018 OSS Grand Developers Challenge
 
     - Succeeded run demo model on Raspberry Pi 3 B+, and the fps is about lower than 1.6
     
-<b>3. Make train dataset</b> (Currently working)
+<b>3. Make train dataset</b>
 
-<b>4. Train custom model</b>
-
-<b>5. Test model</b>
-
-<b>6. If needed, Increase a performance of the model
+    - Make train dataset(total 1815, will be splited into train and test)
     
-<b>7. Make server application
-  
-<b>8. Make client application
-    
-<b>9. System Test</b>
-
-# Done
-1. Gather the train set
-2. Test demo model on Raspberry Pi 3 B+(Too slow..., so I decided to change the overall structure that was udated in repository)
-3. Make train dataset(total 1815, will be splited into train and test)
 4. Make demo server and client(success connecting python server and android client using TCP socket.)
 
 # Useful Links
