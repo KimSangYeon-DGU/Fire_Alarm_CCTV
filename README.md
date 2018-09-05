@@ -49,8 +49,7 @@ This is the repository for 2018 OSS Grand Developers Challenge
     - Make train dataset(total 1815, will be splited into train and test)
 
 <b>[DEMO]</b>
-
-Make demo server and client(success connecting python server and android client using TCP socket.)
+    - Make demo server and client(success connecting python server and android client using TCP socket.)
 
 # Useful Links
 - The mothod to transplant deep learning model on Raspberry pi 3
