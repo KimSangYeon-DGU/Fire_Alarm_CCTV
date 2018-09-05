@@ -14,7 +14,7 @@ This is the repository for 2018 OSS Grand Developers Challenge
     <img src="images/gantt-chart.png", width="1024", height="512">
 </p>
 
-# Work lists
+# TODO List
 <b>1. Gather the information</b>
 
     - Check which Raspberry pi model and camera fits the project
@@ -44,6 +44,12 @@ This is the repository for 2018 OSS Grand Developers Challenge
 <b>8. Make client application
     
 <b>9. System Test</b>
+
+# Done
+1. Gather the train set
+2. Test demo model on Raspberry Pi 3 B+(Too slow..., so I decided to change the overall structure that was udated in repository)
+3. Make train dataset(total 1815, will be splited into train and test)
+4. Make demo server and client(success connecting python server and android client using TCP socket.)
 
 # Useful Links
 - The mothod to transplant deep learning model on Raspberry pi 3
