@@ -33,6 +33,8 @@
     
 <b>11. Make a final report and demonstration video</b>
 
+<b>12. Build train enviornment
+
 # Done
 <b>1. Gather the information</b>
 
