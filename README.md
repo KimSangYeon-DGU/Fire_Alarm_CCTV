@@ -29,7 +29,9 @@
 
 <b>13. Make up datasets for test to calculate model accuracy</b>
 
-<b>14. Check commumication among Raspberry Pi, Python Server and Android Client 
+<b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client 
+    
+<b>15. Make up a user-friendly UI/UX on android client app
 
 # Done
 <b>1. Gather the information</b>
