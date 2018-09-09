@@ -56,7 +56,7 @@
     
 <b>4. First train custom model</b>
 
-<b>10. Communication between Raspberry Pi and Python server. (currently working)
+<b>10. Communication between Raspberry Pi and Python server.
     
     - Should check if it is available for streaming images
         
