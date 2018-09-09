@@ -62,7 +62,10 @@
 
 # Train results
     - First
-        - 
+    <p align="left">
+        <img src="images/first_01.png", width="480">
+    </p>
+
 
 # Useful Links
 - The mothod to transplant deep learning model on Raspberry pi 3
