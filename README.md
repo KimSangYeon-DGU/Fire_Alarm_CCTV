@@ -27,8 +27,6 @@
     
 <b>11. Make a final report and demonstration video</b>
 
-<b>12. Build train enviornment
-
 # Done
 <b>1. Gather the information</b>
 
@@ -55,6 +53,8 @@
 <b>10. Communication between Raspberry Pi and Python server. (currently working)
     
     - Should check if it is available for streaming images
+        
+<b>12. Build train enviornment
 
 <b>[DEMO]</b>
 
