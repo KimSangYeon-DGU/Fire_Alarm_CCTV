@@ -15,8 +15,6 @@
 </p>
 
 # TODO List        
-<b>4. Train custom model</b>
-
 <b>5. Test model</b>
 
 <b>6. If needed, Increase a performance of the model
@@ -51,6 +49,8 @@
 <b>3. Make train dataset</b>
 
     - Make train dataset(total 1815, will be splited into train and test)
+    
+<b>4. First train custom model</b>
 
 <b>10. Communication between Raspberry Pi and Python server. (currently working)
     
