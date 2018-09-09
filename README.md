@@ -62,9 +62,9 @@
 
 # Train results
     - First
-    <p align="left">
-        <img src="images/first_01.png", width="480">
-    </p>
+<p align="left">
+    <img src="images/first_01.png", width="480">
+</p>
 
 
 # Useful Links
