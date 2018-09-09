@@ -15,23 +15,19 @@
 </p>
 
 # TODO List        
-<b>4. Train custom model</b>
-
 <b>5. Test model</b>
 
 <b>6. If needed, Increase a performance of the model
     
 <b>7. Make server application (currently working)
   
-<b>8. Make client application
+<b>8. Make client application (currently working)
     
 <b>9. System Test</b>
-
-<b>10. Communication between Raspberry Pi and Python server.
-    
-    - Should check if it is available for streaming images
     
 <b>11. Make a final report and demonstration video</b>
+
+<b>12. Build train enviornment
 
 # Done
 <b>1. Gather the information</b>
@@ -53,6 +49,12 @@
 <b>3. Make train dataset</b>
 
     - Make train dataset(total 1815, will be splited into train and test)
+    
+<b>4. First train custom model</b>
+
+<b>10. Communication between Raspberry Pi and Python server. (currently working)
+    
+    - Should check if it is available for streaming images
 
 <b>[DEMO]</b>
 
