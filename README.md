@@ -17,7 +17,7 @@
 # TODO List        
 <b>5. Test model</b>
 
-<b>6. If needed, Increase a performance of the model
+<b>6. If needed, increase a performance of the model
     
 <b>7. Make server application (currently working)
   
