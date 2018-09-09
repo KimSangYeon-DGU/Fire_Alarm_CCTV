@@ -27,6 +27,10 @@
     
 <b>11. Make a final report and demonstration video</b>
 
+<b>13. Make up datasets for test to calculate model accuracy</b>
+
+<b>14. Check commumication among Raspberry Pi, Python Server and Android Client 
+
 # Done
 <b>1. Gather the information</b>
 
