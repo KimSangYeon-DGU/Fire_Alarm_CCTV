@@ -31,7 +31,7 @@
 
 <b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client 
     
-<b>15. Make up a user-friendly UI/UX on android client app
+<b>15. Design a user-friendly UI/UX on android client app
 
 # Done
 <b>1. Gather the information</b>
