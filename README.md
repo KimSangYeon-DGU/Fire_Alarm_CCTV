@@ -26,10 +26,6 @@
 <b>8. Make client application
     
 <b>9. System Test</b>
-
-<b>10. Communication between Raspberry Pi and Python server. (currently working)
-    
-    - Should check if it is available for streaming images
     
 <b>11. Make a final report and demonstration video</b>
 
@@ -55,6 +51,10 @@
 <b>3. Make train dataset</b>
 
     - Make train dataset(total 1815, will be splited into train and test)
+
+<b>10. Communication between Raspberry Pi and Python server. (currently working)
+    
+    - Should check if it is available for streaming images
 
 <b>[DEMO]</b>
 
