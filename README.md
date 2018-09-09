@@ -60,6 +60,10 @@
 
     - Make demo server and client(success connecting python server and android client using TCP socket.)
 
+# Train results
+    - First
+        - 
+
 # Useful Links
 - The mothod to transplant deep learning model on Raspberry pi 3
     - https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi
