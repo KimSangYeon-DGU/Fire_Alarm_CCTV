@@ -21,7 +21,7 @@
     
 <b>7. Make server application (currently working)
   
-<b>8. Make client application
+<b>8. Make client application (currently working)
     
 <b>9. System Test</b>
     
