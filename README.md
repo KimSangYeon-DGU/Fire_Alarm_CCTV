@@ -64,9 +64,6 @@
     - First
 <p align="left">
     <img src="images/first_01.png", width="320">
-</p>
-
-<p align="left">
     <img src="images/first_02.png", width="320">
 </p>
 
