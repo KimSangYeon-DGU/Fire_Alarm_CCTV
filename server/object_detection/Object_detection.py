@@ -21,99 +21,221 @@ import cv2
 import numpy as np
 import tensorflow as tf
 import sys
+import socket as sock
+import threading
+import queue
 
-# This is needed since the notebook is stored in the object_detection folder.
-sys.path.append("..")
+'''
+type: function
+name: init
+description: initialize required constants variables
+'''
+def init():
+    global addr, img_file_path, frame_queue, queue_size
+    print("init")
 
-# Import utilites
-from utils import label_map_util
-from utils import visualization_utils as vis_util
+    ip = sock.gethostname()
+    port = 9999
+    addr = (ip, port)
 
-# Name of the directory containing the object detection module we're using
-MODEL_NAME = 'inference_graph'
-IMAGE_NAME = 'test.jpg'
+    root_folder = os.path.dirname(os.path.abspath(__file__)) # Get root directory path
+    img_file_path = os.path.join(root_folder, 'test.jpg')
 
-# Grab path to current working directory
-CWD_PATH = os.getcwd()
+    frame_queue = queue.Queue()
+    queue_size = 30
 
-# Path to frozen detection graph .pb file, which contains the model that is used
-# for object detection.
-PATH_TO_CKPT = os.path.join(CWD_PATH,MODEL_NAME,'frozen_inference_graph.pb')
+def run_detector():
+    global frame_queue, queue_size
 
-# Path to label map file
-PATH_TO_LABELS = os.path.join(CWD_PATH,'training','label_map.pbtxt')
+    # This is needed since the notebook is stored in the object_detection folder.
+    sys.path.append("..")
 
-# Path to image
-PATH_TO_IMAGE = os.path.join(CWD_PATH,IMAGE_NAME)
+    # Import utilites
+    from utils import label_map_util
+    from utils import visualization_utils as vis_util
 
-# Number of classes the object detector can identify
-NUM_CLASSES = 1
+    # Name of the directory containing the object detection module we're using
+    MODEL_NAME = 'inference_graph'
+    IMAGE_NAME = 'test.jpg'
 
-# Load the label map.
-# Label maps map indices to category names, so that when our convolution
-# network predicts `5`, we know that this corresponds to `king`.
-# Here we use internal utility functions, but anything that returns a
-# dictionary mapping integers to appropriate string labels would be fine
-label_map = label_map_util.load_labelmap(PATH_TO_LABELS)
-categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES, use_display_name=True)
-category_index = label_map_util.create_category_index(categories)
+    # Grab path to current working directory
+    CWD_PATH = os.getcwd()
 
-# Load the Tensorflow model into memory.
-detection_graph = tf.Graph()
-with detection_graph.as_default():
-    od_graph_def = tf.GraphDef()
-    with tf.gfile.GFile(PATH_TO_CKPT, 'rb') as fid:
-        serialized_graph = fid.read()
-        od_graph_def.ParseFromString(serialized_graph)
-        tf.import_graph_def(od_graph_def, name='')
+    # Path to frozen detection graph .pb file, which contains the model that is used
+    # for object detection.
+    PATH_TO_CKPT = os.path.join(CWD_PATH,MODEL_NAME,'frozen_inference_graph.pb')
 
-    sess = tf.Session(graph=detection_graph)
+    # Path to label map file
+    PATH_TO_LABELS = os.path.join(CWD_PATH,'training','label_map.pbtxt')
 
-# Define input and output tensors (i.e. data) for the object detection classifier
+    # Path to image
+    PATH_TO_IMAGE = os.path.join(CWD_PATH,IMAGE_NAME)
 
-# Input tensor is the image
-image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
+    # Number of classes the object detector can identify
+    NUM_CLASSES = 1
 
-# Output tensors are the detection boxes, scores, and classes
-# Each box represents a part of the image where a particular object was detected
-detection_boxes = detection_graph.get_tensor_by_name('detection_boxes:0')
+    # Load the label map.
+    # Label maps map indices to category names, so that when our convolution
+    # network predicts `5`, we know that this corresponds to `king`.
+    # Here we use internal utility functions, but anything that returns a
+    # dictionary mapping integers to appropriate string labels would be fine
+    label_map = label_map_util.load_labelmap(PATH_TO_LABELS)
+    categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES, use_display_name=True)
+    category_index = label_map_util.create_category_index(categories)
 
-# Each score represents level of confidence for each of the objects.
-# The score is shown on the result image, together with the class label.
-detection_scores = detection_graph.get_tensor_by_name('detection_scores:0')
-detection_classes = detection_graph.get_tensor_by_name('detection_classes:0')
+    # Load the Tensorflow model into memory.
+    detection_graph = tf.Graph()
+    with detection_graph.as_default():
+        od_graph_def = tf.GraphDef()
+        with tf.gfile.GFile(PATH_TO_CKPT, 'rb') as fid:
+            serialized_graph = fid.read()
+            od_graph_def.ParseFromString(serialized_graph)
+            tf.import_graph_def(od_graph_def, name='')
 
-# Number of objects detected
-num_detections = detection_graph.get_tensor_by_name('num_detections:0')
+        sess = tf.Session(graph=detection_graph)
 
-# Load image using OpenCV and
-# expand image dimensions to have shape: [1, None, None, 3]
-# i.e. a single-column array, where each item in the column has the pixel RGB value
-image = cv2.imread(PATH_TO_IMAGE)
-image_expanded = np.expand_dims(image, axis=0)
+    # Define input and output tensors (i.e. data) for the object detection classifier
 
-# Perform the actual detection by running the model with the image as input
-(boxes, scores, classes, num) = sess.run(
-    [detection_boxes, detection_scores, detection_classes, num_detections],
-    feed_dict={image_tensor: image_expanded})
+    # Input tensor is the image
+    image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
 
-# Draw the results of the detection (aka 'visulaize the results')
+    # Output tensors are the detection boxes, scores, and classes
+    # Each box represents a part of the image where a particular object was detected
+    detection_boxes = detection_graph.get_tensor_by_name('detection_boxes:0')
 
-vis_util.visualize_boxes_and_labels_on_image_array(
-    image,
-    np.squeeze(boxes),
-    np.squeeze(classes).astype(np.int32),
-    np.squeeze(scores),
-    category_index,
-    use_normalized_coordinates=True,
-    line_thickness=8,
-    min_score_thresh=0.80)
+    # Each score represents level of confidence for each of the objects.
+    # The score is shown on the result image, together with the class label.
+    detection_scores = detection_graph.get_tensor_by_name('detection_scores:0')
+    detection_classes = detection_graph.get_tensor_by_name('detection_classes:0')
 
-# All the results have been drawn on image. Now display the image.
-cv2.imshow('Object detector', image)
+    # Number of objects detected
+    num_detections = detection_graph.get_tensor_by_name('num_detections:0')
 
-# Press any key to close the image
-cv2.waitKey(0)
+    # Load image using OpenCV and
+    # expand image dimensions to have shape: [1, None, None, 3]
+    # i.e. a single-column array, where each item in the column has the pixel RGB value
 
-# Clean up
-cv2.destroyAllWindows()
+    while True:
+        # If frame queue is empty, then go to the next loop
+        if frame_queue.empty() == True:
+            continue
+        #image = cv2.imread(PATH_TO_IMAGE)
+        image = frame_queue.get()
+        image_expanded = np.expand_dims(image, axis=0)
+
+        # Perform the actual detection by running the model with the image as input
+        (boxes, scores, classes, num) = sess.run(
+            [detection_boxes, detection_scores, detection_classes, num_detections],
+            feed_dict={image_tensor: image_expanded})
+
+        # Draw the results of the detection (aka 'visulaize the results')
+
+        vis_util.visualize_boxes_and_labels_on_image_array(
+            image,
+            np.squeeze(boxes),
+            np.squeeze(classes).astype(np.int32),
+            np.squeeze(scores),
+            category_index,
+            use_normalized_coordinates=True,
+            line_thickness=8,
+            min_score_thresh=0.80)
+
+        # All the results have been drawn on image. Now display the image.
+        cv2.imshow('Object detector', image)
+
+        # Press any key to close the image
+        if cv2.waitKey(1) == ord('q'):
+            break
+
+    # Clean up
+    cv2.destroyAllWindows()
+
+'''
+type: function
+name: recvall
+description: receive all packets by spliting total stream to 4096
+the dtype modes are string and bytes, the bytes mode is to read image byte array
+and the string mode is to read the length of total packets
+'''
+def recvall(sock, count, dtype):
+
+    if dtype == "bytes":
+        buf = b''
+    else:
+        buf = ''
+    while count:
+        newbuf = sock.recv(count)
+        if dtype == "string":
+            newbuf = newbuf.decode("utf-8")
+        if not newbuf: return None
+        buf += newbuf
+        count -= len(newbuf)
+    return buf
+
+'''
+type: function
+name: run
+description: run server app
+'''
+def run():
+    global addr, img_file_path
+    print("run")
+
+    server = sock.socket(sock.AF_INET, sock.SOCK_STREAM) # initialize server socket
+    server.bind(addr) # socket bind
+
+    print('listen')
+    server.listen(1) # listen and wait for one client
+
+    conn, addr = server.accept() # accept
+    print("Client connected: {0}".format(addr))
+
+    # Send test image
+    with open(img_file_path, 'rb') as fp:
+        data = fp.read()
+        ret = conn.sendall(data)
+        print(ret)
+    
+    server.close()
+
+'''
+type: function
+name: get_cctv_frames
+description: Get cctv frames from raspberry pi 
+'''
+def get_cctv_frames():
+    global addr, frame_queue, queue_size
+    print('Wating raspberry pi...')
+
+    server = sock.socket(sock.AF_INET, sock.SOCK_STREAM)
+    print("Address: {0}".format(addr))
+    server.bind(addr)
+    
+    print('listen')
+    server.listen(1) # listen and wait for one client
+
+    conn, addr = server.accept() # accept
+    print("Client connected: {0}".format(addr))
+ 
+    while True:
+        data_len = recvall(conn, 16, dtype="string")
+        print(data_len)
+        img_bytes = recvall(conn, int(data_len), dtype="bytes")
+        #data = np.fromstring(stringData, dtype='uint8')
+        img = cv2.imdecode(np.frombuffer(img_bytes, np.uint8), 1)
+
+        if frame_queue.qsize() < queue_size:
+            frame_queue.put(img)
+        else:
+            frame_queue.get()
+            frame_queue.put(img)
+
+    server.close()
+    cv2.destroyAllWindows()
+    
+if __name__ == "__main__":
+    init()
+    t1 = threading.Thread(target=get_cctv_frames)
+    t1.start()
+    run_detector()
+    t1.join()
