@@ -19,9 +19,13 @@
 
 <b>6. If needed, increase a performance of the model
     
-<b>7. Make server application (currently working)
+<b>7. Make server application 
+    
+    (currently working, success make real time fire detection server)
   
-<b>8. Make client application (currently working.. so hard...)
+<b>8. Make client application 
+    
+    (currently working.. so hard...)
     
 <b>9. System Test</b>
     
@@ -29,9 +33,9 @@
 
 <b>13. Make up datasets for test to calculate model accuracy</b> <currently working>
 
-<b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client
+<b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client 
     
-<b>15. Design a user-friendly UI/UX on android client app
+    (currently working, but I don't know about method to communicate in streaming between Python server and Android client, so if required, I will use Java CV, but I don't use it as possible as I can. now I'm on the lookout for a way to use base64 library.)
 
 # Done
 <b>1. Gather the information</b>
@@ -61,6 +65,8 @@
     - Should check if it is available for streaming images
         
 <b>12. Build train enviornment
+    
+<b>15. Design a user-friendly UI/UX on android client app
 
 <b>[DEMO]</b>
 
@@ -75,8 +81,12 @@
 
 
 # Useful Links
-- The mothod to transplant deep learning model on Raspberry pi 3
+- The method to transplant deep learning model on Raspberry pi 3
     - https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi
+    
+- The method to train deep learning model using tensorflow object detecion API.
+    - https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10
+    
     
 # Useful info
 - The TOD(TensorFlow Object Detection) on the Raspberry Pi run environments are Tensorflow 1.5, cudNN 7.0 and cuda 8.0(Those are the best setting without error)
