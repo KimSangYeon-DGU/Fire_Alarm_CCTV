@@ -81,8 +81,12 @@
 
 
 # Useful Links
-- The mothod to transplant deep learning model on Raspberry pi 3
+- The method to transplant deep learning model on Raspberry pi 3
     - https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi
+    
+- The method to train deep learning model using tensorflow object detecion API.
+    - https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10
+    
     
 # Useful info
 - The TOD(TensorFlow Object Detection) on the Raspberry Pi run environments are Tensorflow 1.5, cudNN 7.0 and cuda 8.0(Those are the best setting without error)
