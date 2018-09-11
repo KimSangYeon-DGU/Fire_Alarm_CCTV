@@ -19,7 +19,7 @@
 
 <b>6. If needed, increase a performance of the model
     
-<b>7. Make server application (currently working)
+<b>7. Make server application (currently working, success make real time fire detection server)
   
 <b>8. Make client application (currently working.. so hard...)
     
@@ -29,7 +29,7 @@
 
 <b>13. Make up datasets for test to calculate model accuracy</b> <currently working>
 
-<b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client
+<b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client (currently working, but I don't know about method to communicate between Python Server and Android Client)
     
 <b>15. Design a user-friendly UI/UX on android client app
 
