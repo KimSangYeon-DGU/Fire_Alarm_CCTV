@@ -21,15 +21,15 @@
     
 <b>7. Make server application (currently working)
   
-<b>8. Make client application (currently working)
+<b>8. Make client application (currently working.. so hard...)
     
 <b>9. System Test</b>
     
 <b>11. Make a final report and demonstration video</b>
 
-<b>13. Make up datasets for test to calculate model accuracy</b>
+<b>13. Make up datasets for test to calculate model accuracy</b> <currently working>
 
-<b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client 
+<b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client
     
 <b>15. Design a user-friendly UI/UX on android client app
 
