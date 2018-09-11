@@ -5,7 +5,7 @@
 - Fire ditection and image tansfer
 
 # Used Language
-- Python2
+- Python3
 
 # Current state
 - I made a real time fire detection server.
