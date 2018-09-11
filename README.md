@@ -1,8 +1,8 @@
 # 2018 OSS Fire Alarm CCTV
-- This is the repository for 2018 OSS Grand Developers Challenge
+- This is a repository for 2018 OSS Grand Developers Challenge
 
 # What functionality has the CCTV?
-- It detects the fire situation and inform users of that. It shows the fire picture users so the user exactly can check it. It plan to use an artificial intelligence and an image processing methods.
+- It detects the fire situation and inform users of that. It shows the fire picture users so the user exactly can check it. It plans to use an artificial intelligence and an image processing methods.
 
 # Overall Architecture
 <p align="center">
@@ -17,17 +17,21 @@
 # TODO List        
 <b>5. Test model</b>
 
-<b>6. If needed, Increase a performance of the model
+<b>6. If needed, increase a performance of the model
     
 <b>7. Make server application (currently working)
   
-<b>8. Make client application (currently working)
+<b>8. Make client application (currently working.. so hard...)
     
 <b>9. System Test</b>
     
 <b>11. Make a final report and demonstration video</b>
 
-<b>12. Build train enviornment
+<b>13. Make up datasets for test to calculate model accuracy</b> <currently working>
+
+<b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client
+    
+<b>15. Design a user-friendly UI/UX on android client app
 
 # Done
 <b>1. Gather the information</b>
@@ -52,17 +56,23 @@
     
 <b>4. First train custom model</b>
 
-<b>10. Communication between Raspberry Pi and Python server. (currently working)
+<b>10. Communication between Raspberry Pi and Python server.
     
     - Should check if it is available for streaming images
+        
+<b>12. Build train enviornment
 
 <b>[DEMO]</b>
 
     - Make demo server and client(success connecting python server and android client using TCP socket.)
 
 # Train results
-    - First
-        - 
+    - First train
+<p align="left">
+    <img src="images/first_01.png", width="400">
+    <img src="images/first_02.png", width="480">
+</p>
+
 
 # Useful Links
 - The mothod to transplant deep learning model on Raspberry pi 3
