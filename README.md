@@ -30,8 +30,6 @@
 <b>13. Make up datasets for test to calculate model accuracy</b> <currently working>
 
 <b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client (currently working, but I don't know about method to communicate in streaming between Python server and Android client, so if required, I will use Java CV, but I don't use it as possible as I can. now I'm on the lookout for a way to use base64 library.)
-    
-<b>15. Design a user-friendly UI/UX on android client app
 
 # Done
 <b>1. Gather the information</b>
@@ -61,6 +59,8 @@
     - Should check if it is available for streaming images
         
 <b>12. Build train enviornment
+    
+<b>15. Design a user-friendly UI/UX on android client app
 
 <b>[DEMO]</b>
 
