@@ -6,3 +6,6 @@
 
 # Used Language
 - Python2
+
+# Current state
+- I made real time fire detection server.
