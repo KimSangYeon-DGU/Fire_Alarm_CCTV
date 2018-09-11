@@ -19,9 +19,13 @@
 
 <b>6. If needed, increase a performance of the model
     
-<b>7. Make server application (currently working, success make real time fire detection server)
+<b>7. Make server application 
+    
+    (currently working, success make real time fire detection server)
   
-<b>8. Make client application (currently working.. so hard...)
+<b>8. Make client application 
+    
+    (currently working.. so hard...)
     
 <b>9. System Test</b>
     
@@ -29,7 +33,9 @@
 
 <b>13. Make up datasets for test to calculate model accuracy</b> <currently working>
 
-<b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client (currently working, but I don't know about method to communicate in streaming between Python server and Android client, so if required, I will use Java CV, but I don't use it as possible as I can. now I'm on the lookout for a way to use base64 library.)
+<b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client 
+    
+    (currently working, but I don't know about method to communicate in streaming between Python server and Android client, so if required, I will use Java CV, but I don't use it as possible as I can. now I'm on the lookout for a way to use base64 library.)
 
 # Done
 <b>1. Gather the information</b>
