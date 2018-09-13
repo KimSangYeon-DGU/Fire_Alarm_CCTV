@@ -78,11 +78,12 @@ def run_webcam():
 
         if android_connection:
             width, height = frame.shape[:2]
-            frame = cv2.resize(frame, (int(height/4), int(width/4)))
+            #frame = cv2.resize(frame, (int(height/4), int(width/4)))
+            frame = cv2.resize(frame, (774, 681))
             encoded = convert_to_base64(frame)
             outjson = {}
             outjson['img'] = encoded
-            outjson['leaf'] = "leaf"
+            outjson['state'] = "Normal"
             json_data = json.dumps(outjson)
             write_utf8(str(json_data), conn_android)
             android_connection = False
