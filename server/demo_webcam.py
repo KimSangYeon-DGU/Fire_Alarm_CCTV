@@ -78,8 +78,11 @@ def run_webcam():
 
         if android_connection:
             width, height = frame.shape[:2]
-            #frame = cv2.resize(frame, (int(height/4), int(width/4)))
-            frame = cv2.resize(frame, (774, 681))
+            frame = cv2.resize(frame, (int(height/4), int(width/4)))
+
+            # HD Mode
+            #frame = cv2.resize(frame, (774, 681))
+
             encoded = convert_to_base64(frame)
             outjson = {}
             outjson['img'] = encoded
@@ -110,15 +113,15 @@ def wait_android():
         while True:
             buff = conn_android.recv(1024)
             buff = buff.decode("utf-8")
-            print(buff)
+            #print(buff)
             if buff == "Conn":
                 android_connection = True
-                print("Android Connected")
+                #print("Android Connected")
 
             elif buff == "Exit":
                 android_connection = False
                 server.close()
-                print("Android Exited")
+                #print("Android Exited")
                 break
 
 if __name__ == "__main__":
