@@ -21,17 +21,19 @@
     
 <b>7. Make server application 
     
-    (currently working, success make real time fire detection server)
+    (currently working)
   
 <b>8. Make client application 
     
-    (currently working.. so hard...)
+    (currently working)
     
 <b>9. System Test</b>
     
 <b>11. Make a final report and demonstration video</b>
 
-<b>13. Make up datasets for test to calculate model accuracy</b> <currently working>
+<b>13. Make up datasets for test to calculate model accuracy</b> 
+
+    <currently working>
 
 <b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client 
     
