@@ -2,12 +2,19 @@ package cctv.cse.com.cctv_client;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.media.Image;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationMenu;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 
@@ -23,23 +30,29 @@ import java.nio.charset.StandardCharsets;
 public class MainActivity extends AppCompatActivity {
 
     public ImageView mIv_frame;
+    public ImageView mIv_mark;
     public Bitmap mBtm_receive;
     NetworkTask networkTask;
     boolean isConnected;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_land);
         mIv_frame = findViewById(R.id.iv_frame);
+        mIv_mark = findViewById(R.id.iv_mark);
+        bottomNavigationView = findViewById(R.id.bnv_menu);
 
         SwitchCompat switchCompat = findViewById(R.id.sc_connect);
         // Set default image on receive ImageView
-        mIv_frame.setImageDrawable(getResources().getDrawable(R.drawable.cannot_load_image));
-        isConnected  = false;
 
-        Log.d("DEBUG", mIv_frame.getDrawable().getIntrinsicHeight()+"");
-        Log.d("DEBUG", mIv_frame.getDrawable().getIntrinsicWidth()+"");
+        mIv_mark.setImageDrawable(getResources().getDrawable(R.drawable.stop));
+        mIv_frame.setBackgroundColor(Color.WHITE);
+        mIv_frame.setVisibility(View.INVISIBLE);
+        mIv_mark.setVisibility(View.VISIBLE);
+
+        isConnected  = false;
 
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -48,9 +61,12 @@ public class MainActivity extends AppCompatActivity {
                     if (!isConnected) {
                         isConnected = true;
                         try {
+
+                            mIv_mark.setVisibility(View.INVISIBLE);
+                            mIv_frame.setVisibility(View.VISIBLE);
                             // initialize the worker
                             networkTask = new NetworkTask(
-                                    "192.168.1.2",
+                                    "192.168.1.212",
                                     8888
                             );
 
@@ -65,6 +81,39 @@ public class MainActivity extends AppCompatActivity {
                     isConnected = false;
                     networkTask = null;
                 }
+            }
+        });
+        bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.bot_menu_hd:
+                        Log.d("DEBUG", "Reselected");
+                        break;
+                    case R.id.bot_menu_list:
+
+                        break;
+                    case R.id.bot_menu_info:
+
+                        break;
+                }
+            }
+        });
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.bot_menu_hd:
+                        Log.d("DEBUG", "Selected");
+                        break;
+                    case R.id.bot_menu_list:
+
+                        break;
+                    case R.id.bot_menu_info:
+
+                        break;
+                }
+                return true;
             }
         });
 
@@ -141,8 +190,9 @@ public class MainActivity extends AppCompatActivity {
             try {
                 if (socket != null)
                     socket.close();
-                mIv_frame.setImageDrawable(getResources().getDrawable(R.drawable.cannot_load_image));
-
+                //mIv_mark.setImageDrawable(getResources().getDrawable(R.drawable.stop));
+                mIv_mark.setVisibility(View.VISIBLE);
+                mIv_frame.setVisibility(View.INVISIBLE);
             } catch (IOException e) {
                 e.printStackTrace();
             }
