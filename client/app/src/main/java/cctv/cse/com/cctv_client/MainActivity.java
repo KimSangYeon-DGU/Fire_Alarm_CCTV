@@ -5,25 +5,24 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SwitchCompat;
 import android.util.Base64;
-import android.view.View;
-import android.widget.Button;
+import android.util.Log;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.net.SocketAddress;
 import java.nio.charset.StandardCharsets;
 
 public class MainActivity extends AppCompatActivity {
 
-    public ImageView mIv_receive;
+    public ImageView mIv_frame;
     public Bitmap mBtm_receive;
     NetworkTask networkTask;
     boolean isConnected;
@@ -31,38 +30,44 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mIv_receive = (ImageView)findViewById(R.id.iv_receive);
-        Button mBtn_receive = (Button) findViewById(R.id.btn_connect);
+        setContentView(R.layout.activity_main_land);
+        mIv_frame = findViewById(R.id.iv_frame);
 
-
+        SwitchCompat switchCompat = findViewById(R.id.sc_connect);
         // Set default image on receive ImageView
-        mIv_receive.setImageDrawable(getResources().getDrawable(R.drawable.cannot_load_image));
+        mIv_frame.setImageDrawable(getResources().getDrawable(R.drawable.cannot_load_image));
         isConnected  = false;
-        // initialize the worker
 
-        // When receive button is clicked
-        mBtn_receive.setOnClickListener(new Button.OnClickListener(){
+        Log.d("DEBUG", mIv_frame.getDrawable().getIntrinsicHeight()+"");
+        Log.d("DEBUG", mIv_frame.getDrawable().getIntrinsicWidth()+"");
+
+        switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                if (isConnected == false) {
-                    isConnected = true;
-                    try {
-                        networkTask = new NetworkTask(
-                                "192.168.219.195",
-                                8888
-                        );
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    if (!isConnected) {
+                        isConnected = true;
+                        try {
+                            // initialize the worker
+                            networkTask = new NetworkTask(
+                                    "192.168.1.2",
+                                    8888
+                            );
 
-                        networkTask.execute();
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                            networkTask.execute();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
-                }else{
+                }
+                else{
                     isConnected = false;
                     networkTask = null;
                 }
             }
         });
+
     }
 
     public String readUTF8(DataInput in) throws IOException {
@@ -81,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         JSONObject json;
         String mat_string;
         byte[] raw_data;
+
         NetworkTask(String addr, int port) {
             this.addr = addr;
             this.port = port;
@@ -125,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
-            mIv_receive.setImageBitmap(mBtm_receive);
+            mIv_frame.setImageBitmap(mBtm_receive);
         }
 
         @Override
@@ -135,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 if (socket != null)
                     socket.close();
-                mIv_receive.setImageDrawable(getResources().getDrawable(R.drawable.cannot_load_image));
+                mIv_frame.setImageDrawable(getResources().getDrawable(R.drawable.cannot_load_image));
 
             } catch (IOException e) {
                 e.printStackTrace();
