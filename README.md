@@ -21,11 +21,11 @@
     
 <b>7. Make server application 
     
-    (currently working, receive JSON data from android)
+    (currently working, TODO: receive JSON data from android)
   
 <b>8. Make client application 
     
-    (currently working, HD, Push alarm, Call 119)
+    (currently working, TODO: HD, Push alarm, Call 119, Done: Recycler Popup window, splash)
     
 <b>9. System Test</b>
     
