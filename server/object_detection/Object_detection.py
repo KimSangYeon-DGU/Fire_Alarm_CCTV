@@ -24,6 +24,9 @@ import sys
 import socket as sock
 import threading
 import queue
+import json
+import base64
+import struct
 
 '''
 type: function
@@ -31,7 +34,7 @@ name: init
 description: initialize required constants variables
 '''
 def init():
-    global addr, img_file_path, frame_queue, queue_size
+    global addr, img_file_path, frame_queue, queue_size, android_connection
     print("init")
 
     ip = sock.gethostname()
@@ -44,8 +47,42 @@ def init():
     frame_queue = queue.Queue()
     queue_size = 30
 
+    android_connection = False
+
+def write_utf8(msg, socket):
+    encoded = msg.encode(encoding='utf-8')
+    socket.sendall(struct.pack('>i', len(encoded)))
+    socket.sendall(encoded)
+
+'''
+type: function
+name: recvall
+description: receive all packets by spliting total stream to 4096
+the dtype modes are string and bytes, the bytes mode is to read image byte array
+and the string mode is to read the length of total packets
+'''
+def recvall(sock, count, dtype):
+
+    if dtype == "bytes":
+        buf = b''
+    else:
+        buf = ''
+    while count:
+        newbuf = sock.recv(count)
+        if dtype == "string":
+            newbuf = newbuf.decode("utf-8")
+        if not newbuf: return None
+        buf += newbuf
+        count -= len(newbuf)
+    return buf
+
+def convert_to_base64(image):
+    img_str = cv2.imencode('.png', image)[1].tostring()
+    b64 = base64.b64encode(img_str)
+    return b64.decode('utf-8')
+
 def run_detector():
-    global frame_queue, queue_size
+    global frame_queue, queue_size, android_connection, conn_android
 
     # This is needed since the notebook is stored in the object_detection folder.
     sys.path.append("..")
@@ -141,62 +178,29 @@ def run_detector():
             min_score_thresh=0.80)
 
         # All the results have been drawn on image. Now display the image.
-        cv2.imshow('Object detector', image)
+        #cv2.imshow('Object detector', image)
 
         # Press any key to close the image
-        if cv2.waitKey(1) == ord('q'):
-            break
+        #if cv2.waitKey(1) == ord('q'):
+        #    break
+
+        if android_connection:
+            width, height = image.shape[:2]
+            #frame = cv2.resize(image, (int(height/4), int(width/4)))
+
+            # HD Mode
+            frame = cv2.resize(image, (774, 681))
+
+            encoded = convert_to_base64(frame)
+            outjson = {}
+            outjson['img'] = encoded
+            outjson['state'] = "Normal"
+            json_data = json.dumps(outjson)
+            write_utf8(str(json_data), conn_android)
+            android_connection = False
 
     # Clean up
-    cv2.destroyAllWindows()
-
-'''
-type: function
-name: recvall
-description: receive all packets by spliting total stream to 4096
-the dtype modes are string and bytes, the bytes mode is to read image byte array
-and the string mode is to read the length of total packets
-'''
-def recvall(sock, count, dtype):
-
-    if dtype == "bytes":
-        buf = b''
-    else:
-        buf = ''
-    while count:
-        newbuf = sock.recv(count)
-        if dtype == "string":
-            newbuf = newbuf.decode("utf-8")
-        if not newbuf: return None
-        buf += newbuf
-        count -= len(newbuf)
-    return buf
-
-'''
-type: function
-name: run
-description: run server app
-'''
-def run():
-    global addr, img_file_path
-    print("run")
-
-    server = sock.socket(sock.AF_INET, sock.SOCK_STREAM) # initialize server socket
-    server.bind(addr) # socket bind
-
-    print('listen')
-    server.listen(1) # listen and wait for one client
-
-    conn, addr = server.accept() # accept
-    print("Client connected: {0}".format(addr))
-
-    # Send test image
-    with open(img_file_path, 'rb') as fp:
-        data = fp.read()
-        ret = conn.sendall(data)
-        print(ret)
-    
-    server.close()
+    #cv2.destroyAllWindows()
 
 '''
 type: function
@@ -232,10 +236,46 @@ def get_cctv_frames():
 
     server.close()
     cv2.destroyAllWindows()
+
+'''
+type: function
+name: wait_cctv
+description: wait android connection
+'''
+def wait_android():
+    global addr, img_file_path, android_connection, conn_android
+
+    while True:
+        print("Wating android...")
+
+        server = sock.socket(sock.AF_INET, sock.SOCK_STREAM) # initialize server socket
+        server.bind((sock.gethostname(), 8888)) # socket bind
+
+        print('listen to android connection')
+        server.listen(1) # listen and wait for one client
+
+        conn_android, addr = server.accept() # accept
+
+        while True:
+            buff = conn_android.recv(1024)
+            buff = buff.decode("utf-8")
+            #print(buff)
+            if buff == "Conn":
+                android_connection = True
+                #print("Android Connected")
+
+            elif buff == "Exit":
+                android_connection = False
+                server.close()
+                #print("Android Exited")
+                break
     
 if __name__ == "__main__":
     init()
     t1 = threading.Thread(target=get_cctv_frames)
+    t2 = threading.Thread(target=wait_android)
     t1.start()
+    t2.start()
     run_detector()
     t1.join()
+    t2.join()
