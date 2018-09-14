@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context="cctv.cse.com.cctv_client.MainActivity">
+
+    <FrameLayout
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:layout_marginBottom="20dp"
+        android:gravity="top">
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/xmark"
+            android:layout_gravity="right"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:src="@drawable/img" />
+    </FrameLayout>
+
+</LinearLayout>
