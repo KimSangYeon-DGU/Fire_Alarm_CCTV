@@ -21,11 +21,11 @@
     
 <b>7. Make server application 
     
-    (currently working)
+    (currently working, receive JSON data from android)
   
 <b>8. Make client application 
     
-    (currently working)
+    (currently working, HD, Push alarm, Call 119)
     
 <b>9. System Test</b>
     
