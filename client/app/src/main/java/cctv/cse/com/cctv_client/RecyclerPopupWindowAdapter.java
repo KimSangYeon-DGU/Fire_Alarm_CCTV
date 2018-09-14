@@ -41,7 +41,7 @@ public class RecyclerPopupWindowAdapter extends RecyclerView.Adapter<RecyclerPop
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Item item = items.get(position);
-        holder.getTimeTV().setText(item.getTitle());
+        holder.getTimeTV().setText(item.getContent());
     }
 
     @Override
@@ -76,9 +76,11 @@ public class RecyclerPopupWindowAdapter extends RecyclerView.Adapter<RecyclerPop
         public TextView getTimeTV() {
             return timeTV;
         }
+
     }
 
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
+
 }

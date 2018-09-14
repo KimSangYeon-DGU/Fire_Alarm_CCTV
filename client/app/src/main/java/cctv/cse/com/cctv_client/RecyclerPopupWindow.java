@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class RecyclerPopupWindow extends PopupWindow implements RecyclerPopupWin
     private List<Item> items;
     private PopupWindow popupWindow;
     private RecyclerView recyclerView;
+    private TextView titleTextview;
     private RecyclerPopupWindowAdapter recyclerPopupWindowAdapter;
     private CallBack mCallBack;
     private int position;
@@ -37,21 +39,22 @@ public class RecyclerPopupWindow extends PopupWindow implements RecyclerPopupWin
         }
     }
 
-    public void showPopupWindow(Context context, View anchor, int window_width, int window_height) {
+    public void showPopupWindow(Context context, View anchor, int window_width, int window_height, int xoff, int yoff) {
         View contentView = LayoutInflater.from(context).inflate(R.layout.popup_window, null);
         popupWindow = new PopupWindow(contentView, window_width, window_height, true);
         popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
         popupWindow.setOutsideTouchable(true);
 
         popupWindow.setOnDismissListener(this);
-        recyclerView = (RecyclerView) contentView.findViewById(R.id.rv_function_wash_time);
+        recyclerView = contentView.findViewById(R.id.rv_function_wash_time);
+        titleTextview = contentView.findViewById(R.id.rv_title);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerPopupWindowAdapter = new RecyclerPopupWindowAdapter(items);
         recyclerPopupWindowAdapter.setOnItemClickListener(this);
         recyclerView.setAdapter(recyclerPopupWindowAdapter);
 
         popupWindow.setAnimationStyle(R.style.Popwindow_Anim_Down);
-        popupWindow.showAsDropDown(anchor, 100, 0);
+        popupWindow.showAsDropDown(anchor, xoff, yoff);
     }
 
     public void setCallBack(CallBack callBack) {
@@ -67,12 +70,12 @@ public class RecyclerPopupWindow extends PopupWindow implements RecyclerPopupWin
 
     private void changePos(boolean isCloseWindow) {
 
-        if (position != prePosition && prePosition != 0) {
+        if (position != prePosition) {
             items.get(prePosition).setActive(false);
             recyclerPopupWindowAdapter.notifyItemChanged(prePosition);
         }
 
-        if (position > 0) {
+        if (position >= 0) {
             items.get(position).setActive(true);
             recyclerPopupWindowAdapter.notifyItemChanged(position);
         }
@@ -80,7 +83,7 @@ public class RecyclerPopupWindow extends PopupWindow implements RecyclerPopupWin
             (new Handler()).postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    mCallBack.callback(items.get(position).getTitle());
+                    mCallBack.callback(items.get(position).getContent());
                     destroyPopWindow();
                 }
             }, 450);
@@ -100,6 +103,10 @@ public class RecyclerPopupWindow extends PopupWindow implements RecyclerPopupWin
             popupWindow.dismiss();
             popupWindow = null;
         }
+    }
+
+    public void setTitle(String title){
+        titleTextview.setText(title);
     }
 
     public interface CallBack {

@@ -5,16 +5,21 @@ package cctv.cse.com.cctv_client;
  */
 
 public class Item {
+    private String content;
     private String title;
     private boolean active;
 
-    public Item(String title, boolean active) {
-        this.title = title;
+    public Item(String content, boolean active) {
+        this.content = content;
         this.active = active;
     }
 
-    public String getTitle() {
-        return title;
+    public void setTitle(String title) { this.title = title; }
+
+    public String getTitle() { return title; }
+
+    public String getContent() {
+        return content;
     }
 
     public boolean isActive() {

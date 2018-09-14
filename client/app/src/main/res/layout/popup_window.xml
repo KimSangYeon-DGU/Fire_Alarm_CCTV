@@ -8,8 +8,10 @@
         android:id="@+id/rv_title"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#E9E0DB"/>
-
+        android:gravity="center"
+        android:background="#FFCC00"
+        android:textSize="14dp"
+        android:textStyle="bold"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -17,7 +19,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_function_wash_time"
-        android:background="#E9E0DB	"
+        android:background="#E6F1F5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </android.support.v7.widget.RecyclerView>

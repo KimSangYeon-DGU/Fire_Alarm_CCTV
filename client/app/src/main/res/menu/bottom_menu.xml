@@ -25,4 +25,9 @@
         android:title="Info"
         app:showAsAction="ifRoom"/>
 
+    <item
+        android:id="@+id/bot_menu_call"
+        android:icon="@drawable/call"
+        android:title="CALL"
+        app:showAsAction="ifRoom"/>
 </menu>

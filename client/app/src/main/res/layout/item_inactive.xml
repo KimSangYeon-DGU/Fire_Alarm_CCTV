@@ -6,9 +6,9 @@
     <TextView
         android:id="@+id/tv_item_time"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="50dp"
         android:gravity="center"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"/>
+        android:textColor="#808080"
+        android:textSize="12dp"/>
 
 </LinearLayout>
