@@ -25,7 +25,7 @@
   
 <b>8. Make client application 
     
-    (currently working, TODO: HD, Push alarm, Call 119, Done: Recycler Popup window, splash)
+    (currently working, TODO: HD, Call 119, Done: Recycler Popup window, splash, Push alarm)
     
 <b>9. System Test</b>
     
