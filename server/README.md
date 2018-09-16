@@ -7,7 +7,7 @@
 # Function
 - Fire ditection and image tansfer
 
-# Used Language
+# Environment
 - Python3
 
 # Current state
