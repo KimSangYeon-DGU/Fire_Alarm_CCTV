@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
         mIv_frame.setVisibility(View.INVISIBLE);
         mIv_mark.setVisibility(View.VISIBLE);
 
+
+
         isConnected  = false;
 
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

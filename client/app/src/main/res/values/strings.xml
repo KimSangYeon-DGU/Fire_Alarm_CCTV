@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">cctv_client</string>
+    <string name="default_notification_channel_id">channel_id</string>
+    <string name="default_notification_channel_name">channel_name</string>
 </resources>
