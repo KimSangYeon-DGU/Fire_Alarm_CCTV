@@ -1,7 +1,7 @@
 # Server
 - This is a server that mediates Raspberry Pi 3 and Android apps
 
-# Dependencies
+# Libraries
     - pip install pyfcm
 
 # Function
