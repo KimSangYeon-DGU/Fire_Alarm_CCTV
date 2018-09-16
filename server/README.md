@@ -10,5 +10,5 @@
 # Environment
 - Python3
 
-# Current state
+# Current status
 - I made a real time fire detection server.
