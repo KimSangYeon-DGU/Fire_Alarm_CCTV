@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import org.json.JSONObject;
 
 import java.io.DataInput;
@@ -46,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_land);
+        //String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+        //Log.d("REGID",refreshedToken);
         init();
         DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
 
