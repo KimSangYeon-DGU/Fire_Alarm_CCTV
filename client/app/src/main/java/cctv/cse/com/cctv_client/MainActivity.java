@@ -1,5 +1,6 @@
 package cctv.cse.com.cctv_client;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,6 +23,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
     private NetworkTask networkTask;
 
     private BottomNavigationView bottomNavigationView;
-    private List<Item> infoItems;
-    private List<Item> logItems;
     private RecyclerPopupWindow recyclerPopupWindow;
     private JSONObject inJson;
     private JSONObject outJson;
@@ -90,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
                             mIv_frame.setVisibility(View.VISIBLE);
                             // initialize the worker
                             networkTask = new NetworkTask(
-                                    "IP address",
-                                    8888
+                                    Constants.ip,
+                                    Constants.port
                             );
 
                             networkTask.execute();
@@ -135,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.bot_menu_call:
                         // Turn off TCT socket stream.
                         turnOnAndOffHD("off");
-
                         String phone = "119";
                         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
                         startActivity(intent);
@@ -147,44 +146,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    private void showInfoDialog(){
-        final AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this, R.style.Theme_AppCompat_Light_Dialog_Alert);
-        alertDialog2.setMessage(R.string.conn_context)
-                .setTitle(R.string.conn_name)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-
-                        if (recyclerPopupWindow == null) {
-                            recyclerPopupWindow = new RecyclerPopupWindow(infoItems);
-                            int windowWidth = (int) (Constants.displayWidth * (1 / 3.0));
-                            int windowHeight = (int) (Constants.displayHeight * (3 / 5.0));
-                            recyclerPopupWindow.showPopupWindow(MainActivity.this, bottomNavigationView, windowWidth, windowHeight, (int) (Constants.displayWidth / 2) - (int) (windowWidth / 2), 0);
-                            recyclerPopupWindow.setTitle("CCTV Information");
-                            recyclerPopupWindow.setCallBack(new RecyclerPopupWindow.CallBack() {
-                                @Override
-                                public void callback(String value) {
-                                    if (!"-1".equals(value)) {
-                                        //showUpBtn.setText(value);
-                                    }
-                                    recyclerPopupWindow = null;
-                                }
-                            });
-                        }
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                })
-                .setCancelable(false)
-                .show();
-
-    }
     private void showListDialog(){
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this, R.style.Theme_AppCompat_Light_Dialog_Alert);
         alertDialog.setMessage(R.string.conn_context)
@@ -193,22 +154,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
-                        if (recyclerPopupWindow == null) {
-                            recyclerPopupWindow = new RecyclerPopupWindow(logItems);
-                            int windowWidth = (int) (Constants.displayWidth * (1 / 3.0));
-                            int windowHeight = (int) (Constants.displayHeight * (3 / 5.0));
-                            recyclerPopupWindow.showPopupWindow(MainActivity.this, bottomNavigationView, windowWidth, windowHeight, (int) (Constants.displayWidth / 2) - (int) (windowWidth / 2), 0);
-                            recyclerPopupWindow.setTitle("Fire Log");
-                            recyclerPopupWindow.setCallBack(new RecyclerPopupWindow.CallBack() {
-                                @Override
-                                public void callback(String value) {
-                                    if (!"-1".equals(value)) {
-                                        //showUpBtn.setText(value);
-                                    }
-                                    recyclerPopupWindow = null;
-                                }
-                            });
-                        }
+                        DataTask infoDataTask = new DataTask(MainActivity.this, "CAM01", "log");
+                        infoDataTask.execute();
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -219,6 +166,33 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setCancelable(false)
                 .show();
+    }
+
+
+
+    private void showInfoDialog(){
+        final AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this, R.style.Theme_AppCompat_Light_Dialog_Alert);
+        alertDialog2.setMessage(R.string.conn_context)
+                .setTitle(R.string.conn_name)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //loadInfoDataFromServer("CAM01");
+                        dialog.cancel();
+                        DataTask infoDataTask = new DataTask(MainActivity.this, "CAM01", "info");
+                        infoDataTask.execute();
+
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .setCancelable(false)
+                .show();
+
     }
 
     private void turnOnAndOffHD(String status){
@@ -230,20 +204,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() throws JSONException {
-
-        infoItems = new ArrayList<>();
-        infoItems.add(0, new Item("ID: CAM01", false));
-        infoItems.add(1, new Item("Installation date: 09-15-2018", false));
-        infoItems.add(2, new Item("Location: Kitchen", false));
-        infoItems.add(3, new Item("CALL: +82 10-xxxx-xxxx", false));
-
-        logItems = new ArrayList<>();
-        logItems.add(0, new Item("01: CAM01-XX-AA-20xx", false));
-        logItems.add(1, new Item("02: CAM01-XX-AA-20xx", false));
-        logItems.add(2, new Item("03: CAM01-XX-AA-20xx", false));
-        logItems.add(3, new Item("04: CAM01-XX-AA-20xx", false));
-        logItems.add(4, new Item("05: CAM01-XX-AA-20xx", false));
-
         // To get display width and height
         DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
         Constants.displayWidth = dm.widthPixels;
@@ -268,6 +228,113 @@ public class MainActivity extends AppCompatActivity {
         out.write(encoded);
     }
 
+    public void showRecyclerView(String title, List<Item> items){
+        if (recyclerPopupWindow == null) {
+            recyclerPopupWindow = new RecyclerPopupWindow(items);
+            int windowWidth = (int) (Constants.displayWidth * (1 / 3.0));
+            int windowHeight = (int) (Constants.displayHeight * (3 / 5.0));
+            recyclerPopupWindow.showPopupWindow(MainActivity.this, bottomNavigationView, windowWidth, windowHeight, (int) (Constants.displayWidth / 2) - (int) (windowWidth / 2), 0);
+            recyclerPopupWindow.setTitle(title);
+            recyclerPopupWindow.setCallBack(new RecyclerPopupWindow.CallBack() {
+                @Override
+                public void callback(String value) {
+                    recyclerPopupWindow = null;
+                }
+            });
+        }
+    }
+
+
+    public ArrayList<String> parseListToArray(String list){
+        ArrayList<String> parsed = new ArrayList<>();
+        String[] array = list.split("\"");
+
+        for(int i = 1; i < array.length; i+=2){
+            parsed.add(array[i]);
+        }
+
+        return parsed;
+    }
+
+    private class DataTask extends AsyncTask<Void, Void, Void> {
+        private ProgressDialog dialog;
+        private String cam;
+        Socket socket;
+        DataOutputStream out;
+        DataInputStream in;
+        JSONObject _outJson;
+        JSONObject _inJson;
+        List<Item> infoItems;
+        private List<Item> logItems;
+        String dataType;
+
+        DataTask(MainActivity activity, String camera, String dataType) {
+            this.dialog = new ProgressDialog(activity);
+            this.cam = camera;
+            this.dataType = dataType;
+
+            if (dataType.equals("info"))
+                infoItems = new ArrayList<>();
+            else if (dataType.equals("log"))
+                logItems = new ArrayList<>();
+        }
+
+        @Override
+        protected void onPreExecute() {
+            dialog.setMessage("정보를 가져오는 중입니다. 잠시만 기다려주세요");
+            dialog.show();
+        }
+
+        protected Void doInBackground(Void... args) {
+            try {
+                socket = new Socket(Constants.ip, Constants.port);
+                out = new DataOutputStream(socket.getOutputStream());
+                in = new DataInputStream(socket.getInputStream());
+                _outJson = new JSONObject();
+
+                _outJson.put("status", this.dataType);
+                _outJson.put("camera", cam);
+                writeUTF8(_outJson.toString(), out);
+
+                _inJson = new JSONObject(readUTF8(in));
+                if (this.dataType.equals("info")) {
+                    infoItems.add(0, new Item("ID: " + cam, false));
+                    infoItems.add(1, new Item("Installation date: " + _inJson.getString("install_date"), false));
+                    infoItems.add(2, new Item("Location: " + _inJson.getString("location"), false));
+                    infoItems.add(3, new Item("CALL: " + _inJson.getString("call"), false));
+                } else if (this.dataType.equals("log")) {
+                    int numOfLogs = _inJson.getInt("num_of_logs");
+                    if (0 < numOfLogs) {
+                        Log.d("JSON", _inJson.getString("date"));
+                        ArrayList<String> parsedArray = parseListToArray(_inJson.getString("date"));
+
+                        for (int i = 0; i < numOfLogs; i++) {
+                            logItems.add(i, new Item(String.format("%03d", i + 1) + ": " + cam + "-" + parsedArray.get(i), false));
+                        }
+                    } else {
+                        // Dummy data
+                        infoItems.add(0, new Item("", false));
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        protected void onPostExecute(Void result) {
+            // do UI work here
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+                if(this.dataType.equals("info"))
+                    showRecyclerView("CCTV Information", infoItems);
+                else if(this.dataType.equals("log"))
+                    showRecyclerView("Fire log", logItems);
+            }
+        }
+    }
 
     public class NetworkTask extends AsyncTask<Void, Void, Void> {
         String addr;
@@ -285,12 +352,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            try {
-
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
         }
 
         @Override
@@ -306,13 +367,11 @@ public class MainActivity extends AppCompatActivity {
                 outJson.put("status", "conn");
                 while(true) {
                     writeUTF8(outJson.toString(), out);
-                    //outStream.write("Conn".getBytes("UTF-8"));
                     inJson = new JSONObject(readUTF8(in));
-                    //String leaf_name = json.getString("leaf");
                     mat_string = inJson.getString("img");
                     raw_data = Base64.decode(mat_string, Base64.DEFAULT);
                     mBtm_receive = BitmapFactory.decodeByteArray(raw_data, 0, raw_data.length);
-                    if(isConnected == false)
+                    if(!isConnected)
                         break;
                     publishProgress();
                 }

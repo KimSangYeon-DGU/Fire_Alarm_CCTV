@@ -7,4 +7,6 @@ package cctv.cse.com.cctv_client;
 public class Constants {
     public static int displayWidth;
     public static int displayHeight;
+    public static String ip = "IP address";
+    public static int port = 8888;
 }
