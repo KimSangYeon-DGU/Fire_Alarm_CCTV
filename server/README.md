@@ -8,8 +8,8 @@
         - pip install requests
         - pip install python-firebase
 
-# Function
-- Fire ditection and image tansfer
+# Functionality 
+- Fire ditection, image tansfer, and control cctv and client
 
 # Environment
 - Python3 (But, In Python 3.7, the firebase library dosen't work..., I checked it works in version 3.6)
