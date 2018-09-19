@@ -27,7 +27,7 @@
 
     <currently working>
     
-<b>15. Make a database server </b>
+<b>16. Make a database server </b>
     
 # Done
 <b>1. Gather the information</b>
