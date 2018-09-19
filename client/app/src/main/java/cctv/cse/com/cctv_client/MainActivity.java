@@ -1,5 +1,6 @@
 package cctv.cse.com.cctv_client;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,6 +9,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
@@ -18,8 +20,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -31,7 +31,6 @@ import java.io.DataInputStream;
 import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -50,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerPopupWindow recyclerPopupWindow;
     private JSONObject inJson;
     private JSONObject outJson;
-
     private boolean isConnected;
 
     @Override
@@ -70,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         mIv_mark = findViewById(R.id.iv_mark);
         bottomNavigationView = findViewById(R.id.bnv_menu);
 
-        SwitchCompat switchCompat = findViewById(R.id.sc_connect);
+        final SwitchCompat switchCompat = findViewById(R.id.sc_connect);
         // Set default image on receive ImageView
 
         mIv_mark.setImageDrawable(getResources().getDrawable(R.drawable.stop));
@@ -124,44 +122,14 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.bot_menu_list:
                         turnOnAndOffHD("off");
-
-                        if (recyclerPopupWindow == null) {
-                            recyclerPopupWindow = new RecyclerPopupWindow(logItems);
-                            int windowWidth =(int)(Constants.displayWidth*(1/3.0));
-                            int windowHeight = (int)(Constants.displayHeight*(3/5.0));
-                            recyclerPopupWindow.showPopupWindow(MainActivity.this, bottomNavigationView, windowWidth, windowHeight, (int)(Constants.displayWidth/2)-(int)(windowWidth/2), 0);
-                            recyclerPopupWindow.setTitle("Fire Log");
-                            recyclerPopupWindow.setCallBack(new RecyclerPopupWindow.CallBack() {
-                                @Override
-                                public void callback(String value) {
-                                    if (!"-1".equals(value)) {
-                                        //showUpBtn.setText(value);
-                                    }
-                                    recyclerPopupWindow = null;
-                                }
-                            });
-                        }
+                        switchCompat.setChecked(false);
+                        showListDialog();
                         break;
 
                     case R.id.bot_menu_info:
                         turnOnAndOffHD("off");
-
-                        if (recyclerPopupWindow == null) {
-                            recyclerPopupWindow = new RecyclerPopupWindow(infoItems);
-                            int windowWidth =(int)(Constants.displayWidth*(1/3.0));
-                            int windowHeight = (int)(Constants.displayHeight*(3/5.0));
-                            recyclerPopupWindow.showPopupWindow(MainActivity.this, bottomNavigationView, windowWidth, windowHeight, (int)(Constants.displayWidth/2)-(int)(windowWidth/2), 0);
-                            recyclerPopupWindow.setTitle("CCTV Information");
-                            recyclerPopupWindow.setCallBack(new RecyclerPopupWindow.CallBack() {
-                                @Override
-                                public void callback(String value) {
-                                    if (!"-1".equals(value)) {
-                                        //showUpBtn.setText(value);
-                                    }
-                                    recyclerPopupWindow = null;
-                                }
-                            });
-                        }
+                        switchCompat.setChecked(false);
+                        showInfoDialog();
                         break;
 
                     case R.id.bot_menu_call:
@@ -179,6 +147,80 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    private void showInfoDialog(){
+        final AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this, R.style.Theme_AppCompat_Light_Dialog_Alert);
+        alertDialog2.setMessage(R.string.conn_context)
+                .setTitle(R.string.conn_name)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+
+                        if (recyclerPopupWindow == null) {
+                            recyclerPopupWindow = new RecyclerPopupWindow(infoItems);
+                            int windowWidth = (int) (Constants.displayWidth * (1 / 3.0));
+                            int windowHeight = (int) (Constants.displayHeight * (3 / 5.0));
+                            recyclerPopupWindow.showPopupWindow(MainActivity.this, bottomNavigationView, windowWidth, windowHeight, (int) (Constants.displayWidth / 2) - (int) (windowWidth / 2), 0);
+                            recyclerPopupWindow.setTitle("CCTV Information");
+                            recyclerPopupWindow.setCallBack(new RecyclerPopupWindow.CallBack() {
+                                @Override
+                                public void callback(String value) {
+                                    if (!"-1".equals(value)) {
+                                        //showUpBtn.setText(value);
+                                    }
+                                    recyclerPopupWindow = null;
+                                }
+                            });
+                        }
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .setCancelable(false)
+                .show();
+
+    }
+    private void showListDialog(){
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this, R.style.Theme_AppCompat_Light_Dialog_Alert);
+        alertDialog.setMessage(R.string.conn_context)
+                .setTitle(R.string.conn_name)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        if (recyclerPopupWindow == null) {
+                            recyclerPopupWindow = new RecyclerPopupWindow(logItems);
+                            int windowWidth = (int) (Constants.displayWidth * (1 / 3.0));
+                            int windowHeight = (int) (Constants.displayHeight * (3 / 5.0));
+                            recyclerPopupWindow.showPopupWindow(MainActivity.this, bottomNavigationView, windowWidth, windowHeight, (int) (Constants.displayWidth / 2) - (int) (windowWidth / 2), 0);
+                            recyclerPopupWindow.setTitle("Fire Log");
+                            recyclerPopupWindow.setCallBack(new RecyclerPopupWindow.CallBack() {
+                                @Override
+                                public void callback(String value) {
+                                    if (!"-1".equals(value)) {
+                                        //showUpBtn.setText(value);
+                                    }
+                                    recyclerPopupWindow = null;
+                                }
+                            });
+                        }
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .setCancelable(false)
+                .show();
+    }
+
     private void turnOnAndOffHD(String status){
         try {
             outJson.put("hd", status);
@@ -188,6 +230,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() throws JSONException {
+
         infoItems = new ArrayList<>();
         infoItems.add(0, new Item("ID: CAM01", false));
         infoItems.add(1, new Item("Installation date: 09-15-2018", false));

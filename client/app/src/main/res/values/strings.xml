@@ -2,4 +2,6 @@
     <string name="app_name">cctv_client</string>
     <string name="default_notification_channel_id">channel_id</string>
     <string name="default_notification_channel_name">channel_name</string>
+    <string name="conn_name">접속</string>
+    <string name="conn_context">정보를 가져오려면 서버와 연결해야합니다. 연결하시겠습니까?</string>
 </resources>
