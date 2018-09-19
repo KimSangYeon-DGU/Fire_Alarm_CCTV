@@ -19,14 +19,6 @@
 
 <b>6. If needed, increase a performance of the model
     
-<b>7. Make server application 
-    
-    (currently working, TODO: receive JSON data from android)
-  
-<b>8. Make client application 
-    
-    (currently working, TODO: HD, Call 119, Done: Recycler Popup window, splash, Push alarm)
-    
 <b>9. System Test</b>
     
 <b>11. Make a final report and demonstration video</b>
@@ -34,6 +26,8 @@
 <b>13. Make up datasets for test to calculate model accuracy</b> 
 
     <currently working>
+    
+<b>16. Make a database server </b>
     
 # Done
 <b>1. Gather the information</b>
@@ -57,7 +51,15 @@
     - Make train dataset(total 1815, will be splited into train and test)
     
 <b>4. First train custom model</b>
+    
+<b>7. Make server application 
+    
+    (currently working, Done: receive JSON data from android)
 
+<b>8. Make client application 
+    
+    (currently working, Done: Recycler Popup window, splash, Push alarm, HD, Call 119)
+    
 <b>10. Communication between Raspberry Pi and Python server.
     
     - Should check if it is available for streaming images
@@ -90,6 +92,7 @@
     
 # Useful info
 - The TOD(TensorFlow Object Detection) on the Raspberry Pi run environments are Tensorflow 1.5, cudNN 7.0 and cuda 8.0(Those are the best setting without error)
+- Firebase library dosen't work in Python 3.7 
 
 # Performance objectives
 - The information should be gathered to decide performance of the CCTV, so I don't state it yet.
