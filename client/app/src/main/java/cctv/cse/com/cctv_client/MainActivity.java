@@ -21,22 +21,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.FirebaseMessaging;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -90,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                             mIv_frame.setVisibility(View.VISIBLE);
                             // initialize the worker
                             networkTask = new NetworkTask(
+                                    MainActivity.this,
                                     Constants.ip,
                                     Constants.port
                             );
@@ -168,8 +167,6 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
-
-
     private void showInfoDialog(){
         final AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this, R.style.Theme_AppCompat_Light_Dialog_Alert);
         alertDialog2.setMessage(R.string.conn_context)
@@ -215,37 +212,22 @@ public class MainActivity extends AppCompatActivity {
         outJson.put("height", Constants.displayHeight);
     }
 
-    public String readUTF8(DataInput in) throws IOException {
+    public static String readUTF8(DataInput in) throws IOException {
         int length = in.readInt();
         byte [] encoded = new byte[length];
         in.readFully(encoded);
         return new String(encoded, StandardCharsets.UTF_8);
     }
 
-    public void writeUTF8(String s, DataOutput out) throws IOException {
+    public static void writeUTF8(String s, DataOutput out) throws IOException {
         byte [] encoded = s.getBytes(StandardCharsets.UTF_8);
         out.writeInt(encoded.length);
         out.write(encoded);
     }
 
-    public void showRecyclerView(String title, List<Item> items){
-        if (recyclerPopupWindow == null) {
-            recyclerPopupWindow = new RecyclerPopupWindow(items);
-            int windowWidth = (int) (Constants.displayWidth * (1 / 3.0));
-            int windowHeight = (int) (Constants.displayHeight * (3 / 5.0));
-            recyclerPopupWindow.showPopupWindow(MainActivity.this, bottomNavigationView, windowWidth, windowHeight, (int) (Constants.displayWidth / 2) - (int) (windowWidth / 2), 0);
-            recyclerPopupWindow.setTitle(title);
-            recyclerPopupWindow.setCallBack(new RecyclerPopupWindow.CallBack() {
-                @Override
-                public void callback(String value) {
-                    recyclerPopupWindow = null;
-                }
-            });
-        }
-    }
 
 
-    public ArrayList<String> parseListToArray(String list){
+    public static ArrayList<String> parseListToArray(String list){
         ArrayList<String> parsed = new ArrayList<>();
         String[] array = list.split("\"");
 
@@ -256,17 +238,18 @@ public class MainActivity extends AppCompatActivity {
         return parsed;
     }
 
-    private class DataTask extends AsyncTask<Void, Void, Void> {
+    private static class DataTask extends AsyncTask<Void, Void, Void> {
         private ProgressDialog dialog;
         private String cam;
-        Socket socket;
-        DataOutputStream out;
-        DataInputStream in;
-        JSONObject _outJson;
-        JSONObject _inJson;
-        List<Item> infoItems;
+        private Socket socket;
+        private DataOutputStream out;
+        private DataInputStream in;
+        private JSONObject _outJson;
+        private JSONObject _inJson;
+        private List<Item> infoItems;
         private List<Item> logItems;
-        String dataType;
+        private String dataType;
+        private WeakReference<MainActivity> activityWeakReference;
 
         DataTask(MainActivity activity, String camera, String dataType) {
             this.dialog = new ProgressDialog(activity);
@@ -277,6 +260,8 @@ public class MainActivity extends AppCompatActivity {
                 infoItems = new ArrayList<>();
             else if (dataType.equals("log"))
                 logItems = new ArrayList<>();
+
+            activityWeakReference = new WeakReference<>(activity);
         }
 
         @Override
@@ -285,6 +270,21 @@ public class MainActivity extends AppCompatActivity {
             dialog.show();
         }
 
+        private void showRecyclerView(String title, List<Item> items){
+            if (activityWeakReference.get().recyclerPopupWindow == null) {
+                activityWeakReference.get().recyclerPopupWindow = new RecyclerPopupWindow(items);
+                int windowWidth = (int) (Constants.displayWidth * (1 / 3.0));
+                int windowHeight = (int) (Constants.displayHeight * (3 / 5.0));
+                activityWeakReference.get().recyclerPopupWindow.showPopupWindow(activityWeakReference.get().getApplicationContext(), activityWeakReference.get().bottomNavigationView, windowWidth, windowHeight, (int) (Constants.displayWidth / 2) - (int) (windowWidth / 2), 0);
+                activityWeakReference.get().recyclerPopupWindow.setTitle(title);
+                activityWeakReference.get().recyclerPopupWindow.setCallBack(new RecyclerPopupWindow.CallBack() {
+                    @Override
+                    public void callback(String value) {
+                        activityWeakReference.get().recyclerPopupWindow = null;
+                    }
+                });
+            }
+        }
         protected Void doInBackground(Void... args) {
             try {
                 socket = new Socket(Constants.ip, Constants.port);
@@ -309,16 +309,14 @@ public class MainActivity extends AppCompatActivity {
                         ArrayList<String> parsedArray = parseListToArray(_inJson.getString("date"));
 
                         for (int i = 0; i < numOfLogs; i++) {
-                            logItems.add(i, new Item(String.format("%03d", i + 1) + ": " + cam + "-" + parsedArray.get(i), false));
+                            logItems.add(i, new Item(String.format(Locale.KOREA,"%03d", i + 1) + ": " + cam + "-" + parsedArray.get(i), false));
                         }
                     } else {
                         // Dummy data
                         infoItems.add(0, new Item("", false));
                     }
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            } catch (JSONException | IOException e) {
                 e.printStackTrace();
             }
             return null;
@@ -336,7 +334,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public class NetworkTask extends AsyncTask<Void, Void, Void> {
+    public static class NetworkTask extends AsyncTask<Void, Void, Void> {
         String addr;
         int port;
         Socket socket;
@@ -344,9 +342,11 @@ public class MainActivity extends AppCompatActivity {
         DataInputStream in;
         String mat_string;
         byte[] raw_data;
-        NetworkTask(String addr, int port) throws JSONException {
+        private WeakReference<MainActivity> activityWeakReference;
+        NetworkTask(MainActivity context, String addr, int port) throws JSONException {
             this.addr = addr;
             this.port = port;
+            activityWeakReference = new WeakReference<>(context);
         }
 
         @Override
@@ -362,21 +362,20 @@ public class MainActivity extends AppCompatActivity {
                 out = new DataOutputStream(socket.getOutputStream());
                 in = new DataInputStream(socket.getInputStream());
 
-                //writeUTF8(outJson.toString(), out);
-
-                outJson.put("status", "conn");
+                activityWeakReference.get().outJson.put("status", "conn");
                 while(true) {
-                    writeUTF8(outJson.toString(), out);
-                    inJson = new JSONObject(readUTF8(in));
-                    mat_string = inJson.getString("img");
+                    writeUTF8(activityWeakReference.get().outJson.toString(), out);
+                    activityWeakReference.get().inJson = new JSONObject(readUTF8(in));
+                    mat_string = activityWeakReference.get().inJson.getString("img");
                     raw_data = Base64.decode(mat_string, Base64.DEFAULT);
-                    mBtm_receive = BitmapFactory.decodeByteArray(raw_data, 0, raw_data.length);
-                    if(!isConnected)
+
+                    activityWeakReference.get().mBtm_receive = BitmapFactory.decodeByteArray(raw_data, 0, raw_data.length);
+                    if(!activityWeakReference.get().isConnected)
                         break;
                     publishProgress();
                 }
-                outJson.put("status", "exit");
-                writeUTF8(outJson.toString(), out);
+                activityWeakReference.get().outJson.put("status", "exit");
+                writeUTF8( activityWeakReference.get().outJson.toString(), out);
                 //outStream.write("Exit".getBytes("UTF-8"));
             }
             catch (Exception e){
@@ -388,7 +387,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
-            mIv_frame.setImageBitmap(mBtm_receive);
+            activityWeakReference.get().mIv_frame.setImageBitmap(activityWeakReference.get().mBtm_receive);
         }
 
         @Override
@@ -398,9 +397,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                 if (socket != null)
                     socket.close();
-                //mIv_mark.setImageDrawable(getResources().getDrawable(R.drawable.stop));
-                mIv_mark.setVisibility(View.VISIBLE);
-                mIv_frame.setVisibility(View.INVISIBLE);
+                activityWeakReference.get().mIv_mark.setVisibility(View.VISIBLE);
+                activityWeakReference.get().mIv_frame.setVisibility(View.INVISIBLE);
             } catch (IOException e) {
                 e.printStackTrace();
             }
