@@ -19,14 +19,6 @@
 
 <b>6. If needed, increase a performance of the model
     
-<b>7. Make server application 
-    
-    (currently working, TODO: receive JSON data from android)
-  
-<b>8. Make client application 
-    
-    (currently working, TODO: HD, Call 119, Done: Recycler Popup window, splash, Push alarm)
-    
 <b>9. System Test</b>
     
 <b>11. Make a final report and demonstration video</b>
@@ -57,7 +49,15 @@
     - Make train dataset(total 1815, will be splited into train and test)
     
 <b>4. First train custom model</b>
+    
+<b>7. Make server application 
+    
+    (currently working, Done: receive JSON data from android)
 
+<b>8. Make client application 
+    
+    (currently working, Done: Recycler Popup window, splash, Push alarm, HD, Call 119)
+    
 <b>10. Communication between Raspberry Pi and Python server.
     
     - Should check if it is available for streaming images
