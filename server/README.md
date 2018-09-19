@@ -12,7 +12,7 @@
 - Fire ditection and image tansfer
 
 # Environment
-- Python3 (But, In Python 3.7, the firebase library dosen't work..., It works in version 3.6)
+- Python3 (But, In Python 3.7, the firebase library dosen't work..., I checked it works in version 3.6)
 
 # Current status
 - I made a real time fire detection server.
