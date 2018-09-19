@@ -12,7 +12,7 @@
 - Control CCTV and Android client, fire ditection, image tansfer, and communicate with DB and Push notification servers.  
 
 # Environment
-- Python3 (But, In Python 3.7, the firebase library dosen't work..., I checked it works in version 3.6)
+- Python3 (But, in Python 3.7, the firebase library dosen't work..., I checked it works in version 3.6)
 
 # Current status
 - I made a real time fire detection server.
