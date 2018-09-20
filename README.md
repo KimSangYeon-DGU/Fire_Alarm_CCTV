@@ -19,7 +19,7 @@
     
     <currently working>
     
-<b>6. If needed, increase a performance of the model
+<b>6. If needed, increase a performance of the model</b>
     
     <currently working>
     
