@@ -60,11 +60,11 @@
     
 <b>7. Make server application 
     
-    (currently working, Done: receive JSON data from android)
+    (Done: receive JSON data from android)
 
 <b>8. Make client application 
     
-    (currently working, Done: Recycler Popup window, splash, Push alarm, HD, Call 119)
+    (Done: Recycler Popup window, splash, Push alarm, HD, Call 119)
     
 <b>10. Communication between Raspberry Pi and Python server.
     
