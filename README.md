@@ -34,6 +34,10 @@
 <b>13. Make up datasets for test to calculate model accuracy</b> 
 
     <currently working>
+
+<b>16. Additional functionality.
+    
+    (TODO: Server recording, sending detection result from log)
     
 # Done
 <b>1. Gather the information</b>
