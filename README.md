@@ -16,13 +16,21 @@
 
 # TODO List        
 <b>5. Test model</b>
-
+    
+    <currently working>
+    
 <b>6. If needed, increase a performance of the model
     
+    <currently working>
+    
 <b>9. System Test</b>
+
+    <currently working>
     
 <b>11. Make a final report and demonstration video</b>
-
+    
+    <currently working>
+    
 <b>13. Make up datasets for test to calculate model accuracy</b> 
 
     <currently working>
