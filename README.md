@@ -62,23 +62,23 @@
     
 <b>4. First train custom model</b>
     
-<b>7. Make server application 
+<b>7. Make server application</b> 
     
     (Done: receive JSON data from android)
 
-<b>8. Make client application 
+<b>8. Make client application</b> 
     
     (Done: Recycler Popup window, splash, Push alarm, HD, Call 119)
     
-<b>10. Communication between Raspberry Pi and Python server.
+<b>10. Communication between Raspberry Pi and Python server.</b>
     
     - Should check if it is available for streaming images
         
-<b>12. Build train enviornment
+<b>12. Build train enviornment</b>
     
-<b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client 
+<b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client </b>
     
-<b>15. Design a user-friendly UI/UX on android client app
+<b>15. Design a user-friendly UI/UX on android client app</b>
 
 <b>16. Make a database server </b>
 
