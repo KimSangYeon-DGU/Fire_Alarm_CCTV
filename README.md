@@ -35,7 +35,7 @@
 
     <currently working>
 
-<b>16. Additional functionality.
+<b>16. Additional functionality.</b>
     
     (TODO: Server recording, sending detection result from log)
     
