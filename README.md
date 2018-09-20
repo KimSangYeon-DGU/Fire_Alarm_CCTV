@@ -27,8 +27,6 @@
 
     <currently working>
     
-<b>16. Make a database server </b>
-    
 # Done
 <b>1. Gather the information</b>
 
@@ -69,6 +67,8 @@
 <b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client 
     
 <b>15. Design a user-friendly UI/UX on android client app
+
+<b>16. Make a database server </b>
 
 <b>[DEMO]</b>
 
