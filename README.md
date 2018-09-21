@@ -37,7 +37,7 @@
 
 <b>16. Additional functionality.</b>
     
-    (TODO: Server recording, sending detection result from log)
+    (TODO: Sending detection result from log, Done: Server recording, and removing oldest file when it is expiring)
     
 # Done
 <b>1. Gather the information</b>
