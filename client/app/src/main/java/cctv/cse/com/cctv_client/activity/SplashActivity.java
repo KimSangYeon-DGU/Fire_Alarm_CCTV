@@ -1,8 +1,11 @@
-package cctv.cse.com.cctv_client;
+package cctv.cse.com.cctv_client.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import cctv.cse.com.cctv_client.R;
+import cctv.cse.com.cctv_client.activity.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

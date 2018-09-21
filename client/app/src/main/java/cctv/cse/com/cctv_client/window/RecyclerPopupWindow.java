@@ -1,4 +1,4 @@
-package cctv.cse.com.cctv_client;
+package cctv.cse.com.cctv_client.window;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
@@ -7,11 +7,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import java.util.List;
+
+import cctv.cse.com.cctv_client.R;
+import cctv.cse.com.cctv_client.adapter.RecyclerPopupWindowAdapter;
+import cctv.cse.com.cctv_client.etc.Item;
 
 /**
  * Created by sy081 on 2018-09-14.

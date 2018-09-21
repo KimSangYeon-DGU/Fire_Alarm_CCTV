@@ -1,4 +1,4 @@
-package cctv.cse.com.cctv_client;
+package cctv.cse.com.cctv_client.activity;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.google.firebase.iid.FirebaseInstanceId;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,6 +37,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import cctv.cse.com.cctv_client.util.ConstantsUtil;
+import cctv.cse.com.cctv_client.etc.Item;
+import cctv.cse.com.cctv_client.R;
+import cctv.cse.com.cctv_client.window.RecyclerPopupWindow;
+
 public class MainActivity extends AppCompatActivity {
 
     private ImageView mIv_frame;
@@ -48,22 +54,24 @@ public class MainActivity extends AppCompatActivity {
     private JSONObject inJson;
     private JSONObject outJson;
     private boolean isConnected;
+    private ImageView ivPopup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_land);
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+        //ivPopup = findViewById(R.id.iv_popup);
+        ivPopup = new ImageView(this);
         Log.d("REGID",refreshedToken);
         try {
             init();
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
         mIv_frame = findViewById(R.id.iv_frame);
         mIv_mark = findViewById(R.id.iv_mark);
+
         bottomNavigationView = findViewById(R.id.bnv_menu);
 
         final SwitchCompat switchCompat = findViewById(R.id.sc_connect);
@@ -89,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
                             // initialize the worker
                             networkTask = new NetworkTask(
                                     MainActivity.this,
-                                    Constants.ip,
-                                    Constants.port
+                                    ConstantsUtil.ip,
+                                    ConstantsUtil.port
                             );
 
                             networkTask.execute();
@@ -145,6 +153,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void showFireImage(ImageView imageView, int width, int height) {
+        final ImagePopup imagePopup = new ImagePopup(this);
+        imagePopup.initiatePopup(imageView.getDrawable());
+        imagePopup.setWindowWidth((int)(ConstantsUtil.displayWidth/1.5));
+        imagePopup.setWindowHeight((int)(ConstantsUtil.displayHeight/1.5));
+        imagePopup.viewPopup();
+    }
+
     private void showListDialog(){
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this, R.style.Theme_AppCompat_Light_Dialog_Alert);
         alertDialog.setMessage(R.string.conn_context)
@@ -153,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
-                        DataTask infoDataTask = new DataTask(MainActivity.this, "CAM01", "log");
+                        DataTask infoDataTask = new DataTask(MainActivity.this, "CAM01", "log", "null");
                         infoDataTask.execute();
                     }
                 })
@@ -176,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         //loadInfoDataFromServer("CAM01");
                         dialog.cancel();
-                        DataTask infoDataTask = new DataTask(MainActivity.this, "CAM01", "info");
+                        DataTask infoDataTask = new DataTask(MainActivity.this, "CAM01", "info", "null");
                         infoDataTask.execute();
 
                     }
@@ -203,13 +219,13 @@ public class MainActivity extends AppCompatActivity {
     private void init() throws JSONException {
         // To get display width and height
         DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
-        Constants.displayWidth = dm.widthPixels;
-        Constants.displayHeight = dm.heightPixels;
+        ConstantsUtil.displayWidth = dm.widthPixels;
+        ConstantsUtil.displayHeight = dm.heightPixels;
 
         outJson = new JSONObject();
         outJson.put("hd", "off");
-        outJson.put("width", Constants.displayWidth);
-        outJson.put("height", Constants.displayHeight);
+        outJson.put("width", ConstantsUtil.displayWidth);
+        outJson.put("height", ConstantsUtil.displayHeight);
     }
 
     public static String readUTF8(DataInput in) throws IOException {
@@ -225,8 +241,6 @@ public class MainActivity extends AppCompatActivity {
         out.write(encoded);
     }
 
-
-
     public static ArrayList<String> parseListToArray(String list){
         ArrayList<String> parsed = new ArrayList<>();
         String[] array = list.split("\"");
@@ -238,9 +252,38 @@ public class MainActivity extends AppCompatActivity {
         return parsed;
     }
 
+    public void getFireImageFromServer(String value){
+        String[] spltValue = value.split(":");
+        spltValue[1] = spltValue[1].replaceFirst(" ", "");
+        String[] fireInfo = spltValue[1].split("-");
+        String date = fireInfo[1]+"-"+fireInfo[2] + "-" + fireInfo[3];
+        DataTask fireDataTask = new DataTask(MainActivity.this, fireInfo[0], "fire", date);
+        fireDataTask.execute();
+    }
+
+    private void showRecyclerView(String title, List<Item> items){
+        if (recyclerPopupWindow == null) {
+            recyclerPopupWindow = new RecyclerPopupWindow(items);
+            int windowWidth = (int) (ConstantsUtil.displayWidth * (1 / 3.0));
+            int windowHeight = (int) (ConstantsUtil.displayHeight * (3 / 5.0));
+            recyclerPopupWindow.showPopupWindow(getApplicationContext(), bottomNavigationView, windowWidth, windowHeight, (int) (ConstantsUtil.displayWidth / 2) - (int) (windowWidth / 2), 0);
+            recyclerPopupWindow.setTitle(title);
+            recyclerPopupWindow.setCallBack(new RecyclerPopupWindow.CallBack() {
+                @Override
+                public void callback(String value) {
+                    if (!"-1".equals(value)) {
+                        getFireImageFromServer(value);
+                    }
+                    recyclerPopupWindow = null;
+                }
+            });
+        }
+    }
+
     private static class DataTask extends AsyncTask<Void, Void, Void> {
         private ProgressDialog dialog;
         private String cam;
+        private String date;
         private Socket socket;
         private DataOutputStream out;
         private DataInputStream in;
@@ -250,50 +293,43 @@ public class MainActivity extends AppCompatActivity {
         private List<Item> logItems;
         private String dataType;
         private WeakReference<MainActivity> activityWeakReference;
+        private Bitmap bitmap;
 
-        DataTask(MainActivity activity, String camera, String dataType) {
-            this.dialog = new ProgressDialog(activity);
+        DataTask(MainActivity activity, String camera, String dataType, String date) {
+            activityWeakReference = new WeakReference<>(activity);
+            if(!dataType.equals("fire")) {
+                this.dialog = new ProgressDialog(activity);
+            }
             this.cam = camera;
             this.dataType = dataType;
-
+            this.date = date;
             if (dataType.equals("info"))
                 infoItems = new ArrayList<>();
             else if (dataType.equals("log"))
                 logItems = new ArrayList<>();
-
-            activityWeakReference = new WeakReference<>(activity);
         }
 
         @Override
         protected void onPreExecute() {
-            dialog.setMessage("정보를 가져오는 중입니다. 잠시만 기다려주세요");
-            dialog.show();
-        }
-
-        private void showRecyclerView(String title, List<Item> items){
-            if (activityWeakReference.get().recyclerPopupWindow == null) {
-                activityWeakReference.get().recyclerPopupWindow = new RecyclerPopupWindow(items);
-                int windowWidth = (int) (Constants.displayWidth * (1 / 3.0));
-                int windowHeight = (int) (Constants.displayHeight * (3 / 5.0));
-                activityWeakReference.get().recyclerPopupWindow.showPopupWindow(activityWeakReference.get().getApplicationContext(), activityWeakReference.get().bottomNavigationView, windowWidth, windowHeight, (int) (Constants.displayWidth / 2) - (int) (windowWidth / 2), 0);
-                activityWeakReference.get().recyclerPopupWindow.setTitle(title);
-                activityWeakReference.get().recyclerPopupWindow.setCallBack(new RecyclerPopupWindow.CallBack() {
-                    @Override
-                    public void callback(String value) {
-                        activityWeakReference.get().recyclerPopupWindow = null;
-                    }
-                });
+            if(!dataType.equals("fire")) {
+                dialog.setMessage("정보를 가져오는 중입니다. 잠시만 기다려주세요");
+                dialog.show();
             }
         }
+
+
         protected Void doInBackground(Void... args) {
             try {
-                socket = new Socket(Constants.ip, Constants.port);
+                socket = new Socket(ConstantsUtil.ip, ConstantsUtil.port);
                 out = new DataOutputStream(socket.getOutputStream());
                 in = new DataInputStream(socket.getInputStream());
                 _outJson = new JSONObject();
 
                 _outJson.put("status", this.dataType);
                 _outJson.put("camera", cam);
+                _outJson.put("date", date);
+                _outJson.put("width", ConstantsUtil.displayWidth);
+                _outJson.put("height", ConstantsUtil.displayHeight);
                 writeUTF8(_outJson.toString(), out);
 
                 _inJson = new JSONObject(readUTF8(in));
@@ -311,10 +347,12 @@ public class MainActivity extends AppCompatActivity {
                         for (int i = 0; i < numOfLogs; i++) {
                             logItems.add(i, new Item(String.format(Locale.KOREA,"%03d", i + 1) + ": " + cam + "-" + parsedArray.get(i), false));
                         }
-                    } else {
-                        // Dummy data
-                        infoItems.add(0, new Item("", false));
                     }
+                }
+                else if (this.dataType.equals("fire")) {
+                    String mat_string = _inJson.getString("encoded");
+                    byte[] raw_data = Base64.decode(mat_string, Base64.DEFAULT);
+                    bitmap = BitmapFactory.decodeByteArray(raw_data, 0, raw_data.length);
                 }
             } catch (JSONException | IOException e) {
                 e.printStackTrace();
@@ -324,12 +362,17 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onPostExecute(Void result) {
             // do UI work here
-            if (dialog.isShowing()) {
-                dialog.dismiss();
-                if(this.dataType.equals("info"))
-                    showRecyclerView("CCTV Information", infoItems);
-                else if(this.dataType.equals("log"))
-                    showRecyclerView("Fire log", logItems);
+            if (!this.dataType.equals("fire")) {
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                    if (this.dataType.equals("info"))
+                        activityWeakReference.get().showRecyclerView("CCTV Information", infoItems);
+                    else if (this.dataType.equals("log"))
+                        activityWeakReference.get().showRecyclerView("Fire log", logItems);
+                }
+            }else{
+                activityWeakReference.get().ivPopup.setImageBitmap(bitmap);
+                activityWeakReference.get().showFireImage(activityWeakReference.get().ivPopup, bitmap.getWidth(), bitmap.getHeight());
             }
         }
     }

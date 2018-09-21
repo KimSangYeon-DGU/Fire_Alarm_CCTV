@@ -1,4 +1,4 @@
-package cctv.cse.com.cctv_client;
+package cctv.cse.com.cctv_client.etc;
 
 /**
  * Created by sy081 on 2018-09-14.

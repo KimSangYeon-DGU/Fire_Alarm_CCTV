@@ -1,4 +1,4 @@
-package cctv.cse.com.cctv_client;
+package cctv.cse.com.cctv_client.service;
 
 import android.util.Log;
 

@@ -1,4 +1,4 @@
-package cctv.cse.com.cctv_client;
+package cctv.cse.com.cctv_client.service;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -13,6 +13,9 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import cctv.cse.com.cctv_client.R;
+import cctv.cse.com.cctv_client.activity.MainActivity;
 
 /**
  * Created by sy081 on 2018-09-17.

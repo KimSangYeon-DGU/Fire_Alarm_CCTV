@@ -1,4 +1,4 @@
-package cctv.cse.com.cctv_client;
+package cctv.cse.com.cctv_client.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
+
+import cctv.cse.com.cctv_client.etc.Item;
+import cctv.cse.com.cctv_client.R;
 
 /**
  * Created by sy081 on 2018-09-14.
