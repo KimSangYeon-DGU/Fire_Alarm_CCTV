@@ -34,10 +34,6 @@
 <b>13. Make up datasets for test to calculate model accuracy</b> 
 
     <currently working>
-
-<b>16. Additional functionality.</b>
-    
-    (TODO: Sending detection result from log, Done: Server recording, and removing oldest file when it is expiring)
     
 # Done
 <b>1. Gather the information</b>
@@ -81,6 +77,10 @@
 <b>15. Design a user-friendly UI/UX on android client app</b>
 
 <b>16. Make a database server </b>
+
+<b>17. Additional functionality.</b>
+    
+    (Done: Server recording, and removing oldest file when it is expiring, Getting detection result from server using log)
 
 <b>[DEMO]</b>
 
