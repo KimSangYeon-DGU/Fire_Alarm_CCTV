@@ -189,6 +189,7 @@ def run_detector():
 
     pre_date = ""
     warning_count = 0
+    safe_count = 0
     while True:
         # If frame queue is empty, then go to the next loop
         if frame_queue.empty() == True:
@@ -225,21 +226,26 @@ def run_detector():
                     #print("category:{0}, prob:{1}".format(splt_cat[0], splt_cat[1]))
                     if splt_cat[0] == "fire":
                         warning_count+=1
+                        safe_count = 0
                         print(warning_count)
+                    else:
+                        safe_count += 1
                 
         if warning_count >= Constants.NOTIF_COUNT:
             notif_thread = threading.Thread(target=send_push_notif, args=("A fire has been detected", "Please check your CCTV App", ))
             notif_thread.start()
             notif_thread.join()
-            #send_push_notif(title="A fire has been detected", body="Please check your CCTV App")
             warning_count = 0
 
-        # All the results have been drawn on image. Now display the image.
-        #cv2.imshow('Object detector', image)
+            splt_time = str(datetime.datetime.now()).split(" ")
+            
+            image_name = "{0}_{1}_{2}_{3}".format(splt_time[0], splt_time[1][0:2], splt_time[1][3:5], splt_time[1][6:8])
 
-        # Press any key to close the image
-        #if cv2.waitKey(1) == ord('q'):
-        #    break
+            update_log_db(image_name, "CAM01")
+            save_fire_image(image, image_name, "CAM01", "png")
+    
+        if safe_count >= Constants.NOTIF_COUNT:
+            warning_count = 0
 
         if REC:
             cur_date = datetime.datetime.date(datetime.datetime.now())
@@ -270,9 +276,20 @@ def run_detector():
             android_connection = False
 
     video.release()
-    # Clean up
-    #cv2.destroyAllWindows()
 
+def save_fire_image(image, image_name, cam, ext):
+    fire_dir = os.path.join(Constants.CUR_DIR, "fire")
+    cam_dir = os.path.join(fire_dir, cam)
+    img_path = os.path.join(cam_dir, image_name+"."+ext)
+    cv2.imwrite(img_path, image)
+
+def update_log_db(image_name, cam):
+    fb = firebase.FirebaseApplication(Constants.DB_ADDR, None)
+    result = fb.get("/users/user1/"+cam+"/log", None)
+
+    result["date"].append(image_name)
+    result["num_of_logs"] = 1 + int(result["num_of_logs"])
+    result = fb.put("/users/user1/CAM01", "log", result)
 
 def send_fire_image(cam, date):
     global display_width, display_height
