@@ -604,6 +604,7 @@ def visualize_boxes_and_labels_on_image_array(
   box_to_keypoints_map = collections.defaultdict(list)
   if not max_boxes_to_draw:
     max_boxes_to_draw = boxes.shape[0]
+
   for i in range(min(max_boxes_to_draw, boxes.shape[0])):
     if scores is None or scores[i] > min_score_thresh:
       box = tuple(boxes[i].tolist())
@@ -636,6 +637,8 @@ def visualize_boxes_and_labels_on_image_array(
           box_to_color_map[box] = STANDARD_COLORS[
               classes[i] % len(STANDARD_COLORS)]
 
+  det_ret_list = []
+  img_height, img_width = image.shape[:2]
   # Draw all boxes onto image.
   for box, color in box_to_color_map.items():
     ymin, xmin, ymax, xmax = box
@@ -669,8 +672,16 @@ def visualize_boxes_and_labels_on_image_array(
           color=color,
           radius=line_thickness / 2,
           use_normalized_coordinates=use_normalized_coordinates)
-
-  return image
+    ret_dict = {
+      "cats": box_to_display_str_map[box],
+      "coords":[ymin*img_height, xmin*img_width, ymax*img_height, xmax*img_width]
+    }
+    #for display_str in box_to_keypoints_map[box][::-1]:
+    #  ret_dict["cats"].append(display_str)      
+    #print(box_to_display_str_map[box])
+    det_ret_list.append(ret_dict)
+  return det_ret_list
+  #return image
 
 
 def add_cdf_image_summary(values, name):
