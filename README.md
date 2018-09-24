@@ -1,4 +1,4 @@
-# 2018 OSS Fire Alarm CCTV
+# 🔥 2018 OSS Fire Alarm CCTV 🔥
 - This is a repository for 2018 OSS Grand Developers Challenge
 
 # What functionality has the CCTV?
@@ -29,7 +29,7 @@
     
 <b>11. Make a final report and demonstration video</b>
     
-    <currently working>
+    <currently working, Change cctv resolution, make storyboard for demo video>
     
 <b>13. Make up datasets for test to calculate model accuracy</b> 
 
