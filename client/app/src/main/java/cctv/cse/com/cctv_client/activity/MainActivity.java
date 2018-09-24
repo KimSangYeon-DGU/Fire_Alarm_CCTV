@@ -344,8 +344,8 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("JSON", _inJson.getString("date"));
                         ArrayList<String> parsedArray = parseListToArray(_inJson.getString("date"));
 
-                        for (int i = 0; i < numOfLogs; i++) {
-                            logItems.add(i, new Item(String.format(Locale.KOREA,"%03d", i + 1) + ": " + cam + "-" + parsedArray.get(i), false));
+                        for (int i = numOfLogs-1; i >= 0; --i) {
+                            logItems.add(numOfLogs-i-1, new Item(String.format(Locale.KOREA,"%03d", numOfLogs-i) + ": " + cam + "-" + parsedArray.get(i), false));
                         }
                     }
                 }
