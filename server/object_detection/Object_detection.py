@@ -38,7 +38,7 @@ name: init
 description: initialize required constants variables
 '''
 def init():
-    global img_file_path, frame_queue, android_connection, HD, display_width, display_height, REC, fourcc
+    global img_file_path, frame_queue, android_connection, HD, display_width, display_height, REC, fourcc, NOTIF
     print("init")
 
     root_folder = os.path.dirname(os.path.abspath(__file__)) # Get root directory path
@@ -52,6 +52,7 @@ def init():
     display_width = None
     display_height = None
     REC = False
+    NOTIF = False
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
 
 
@@ -117,7 +118,7 @@ def send_push_notif(title, body):
     print(ret)
     
 def run_detector():
-    global frame_queue, android_connection, conn_android, HD, display_width, display_height, video, REC, fourcc
+    global frame_queue, android_connection, conn_android, HD, display_width, display_height, video, REC, fourcc, NOTIF
 
     # This is needed since the notebook is stored in the object_detection folder.
     sys.path.append("..")
@@ -230,11 +231,13 @@ def run_detector():
                         print(warning_count)
                     else:
                         safe_count += 1
-                
+        
         if warning_count >= Constants.NOTIF_COUNT:
-            notif_thread = threading.Thread(target=send_push_notif, args=("A fire has been detected", "Please check your CCTV App", ))
-            notif_thread.start()
-            notif_thread.join()
+            if NOTIF:
+                notif_thread = threading.Thread(target=send_push_notif, args=("A fire has been detected", "Please check your CCTV App", ))
+                notif_thread.start()
+                notif_thread.join()
+                NOTIF = False
             warning_count = 0
 
             splt_time = str(datetime.datetime.now()).split(" ")
@@ -246,8 +249,9 @@ def run_detector():
     
         if safe_count >= Constants.NOTIF_COUNT:
             warning_count = 0
-
+        
         if REC:
+            fr_height, fr_width = frame.shape[:2]
             cur_date = datetime.datetime.date(datetime.datetime.now())
             if pre_date != cur_date:
                 file_names = os.listdir(Constants.REC_DIR)
@@ -255,10 +259,10 @@ def run_detector():
                 num_of_files = len(file_names)
                 if num_of_files > 3:
                     os.remove(os.path.join(Constants.REC_DIR, file_names[0]))
-                set_video_writer(os.path.join(Constants.REC_DIR, str(cur_date)+".avi"), fourcc, 30, width=640, height=480)
+                set_video_writer(os.path.join(Constants.REC_DIR, str(cur_date)+".avi"), fourcc, 20, width=fr_width, height=fr_height)
             pre_date = cur_date
             video.write(frame)
-
+        
         if android_connection:
             #frame = cv2.resize(image, (int(height/4), int(width/4)))
 
