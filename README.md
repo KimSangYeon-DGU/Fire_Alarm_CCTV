@@ -29,7 +29,7 @@
     
 <b>11. Make a final report and demonstration video</b>
     
-    <currently working, Change cctv resolution, make storyboard for demo video>
+    <currently working, TODO: final report, DONE: demo video>
     
 <b>13. Make up datasets for test to calculate model accuracy</b> 
 

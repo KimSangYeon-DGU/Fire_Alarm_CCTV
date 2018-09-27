@@ -38,7 +38,7 @@ name: init
 description: initialize required constants variables
 '''
 def init():
-    global img_file_path, frame_queue, android_connection, HD, display_width, display_height, REC, fourcc
+    global img_file_path, frame_queue, android_connection, HD, display_width, display_height, REC, fourcc, NOTIF, SAVE
     print("init")
 
     root_folder = os.path.dirname(os.path.abspath(__file__)) # Get root directory path
@@ -52,6 +52,8 @@ def init():
     display_width = None
     display_height = None
     REC = False
+    NOTIF = False
+    SAVE = False
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
 
 
@@ -117,7 +119,7 @@ def send_push_notif(title, body):
     print(ret)
     
 def run_detector():
-    global frame_queue, android_connection, conn_android, HD, display_width, display_height, video, REC, fourcc
+    global frame_queue, android_connection, conn_android, HD, display_width, display_height, video, REC, fourcc, NOTIF, SAVE
 
     # This is needed since the notebook is stored in the object_detection folder.
     sys.path.append("..")
@@ -218,36 +220,46 @@ def run_detector():
             line_thickness=8,
             min_score_thresh=0.80)
 
+        cv2.imshow('Object detector', image)
+        if cv2.waitKey(1) == ord('q'):
+            break
+
         if 0 < len(det_ret_list):
             for det_ret in det_ret_list:
                 cats_list = det_ret["cats"]
+                
                 for cats_str in cats_list: 
                     splt_cat = cats_str.split(":")
                     #print("category:{0}, prob:{1}".format(splt_cat[0], splt_cat[1]))
                     if splt_cat[0] == "fire":
                         warning_count+=1
                         safe_count = 0
-                        print(warning_count)
+                        print(cats_str)
+                        #print(warning_count)
                     else:
                         safe_count += 1
-                
+        
         if warning_count >= Constants.NOTIF_COUNT:
-            notif_thread = threading.Thread(target=send_push_notif, args=("A fire has been detected", "Please check your CCTV App", ))
-            notif_thread.start()
-            notif_thread.join()
+            if NOTIF:
+                notif_thread = threading.Thread(target=send_push_notif, args=("A fire has been detected", "Please check your CCTV App", ))
+                notif_thread.start()
+                notif_thread.join()
+                NOTIF = False
             warning_count = 0
 
             splt_time = str(datetime.datetime.now()).split(" ")
             
             image_name = "{0}_{1}_{2}_{3}".format(splt_time[0], splt_time[1][0:2], splt_time[1][3:5], splt_time[1][6:8])
 
-            update_log_db(image_name, "CAM01")
-            save_fire_image(image, image_name, "CAM01", "png")
+            if SAVE:
+                update_log_db(image_name, "CAM01")
+                save_fire_image(image, image_name, "CAM01", "png")
     
         if safe_count >= Constants.NOTIF_COUNT:
             warning_count = 0
-
+        
         if REC:
+            fr_height, fr_width = frame.shape[:2]
             cur_date = datetime.datetime.date(datetime.datetime.now())
             if pre_date != cur_date:
                 file_names = os.listdir(Constants.REC_DIR)
@@ -255,10 +267,10 @@ def run_detector():
                 num_of_files = len(file_names)
                 if num_of_files > 3:
                     os.remove(os.path.join(Constants.REC_DIR, file_names[0]))
-                set_video_writer(os.path.join(Constants.REC_DIR, str(cur_date)+".avi"), fourcc, 30, width=640, height=480)
+                set_video_writer(os.path.join(Constants.REC_DIR, str(cur_date)+".avi"), fourcc, 20, width=fr_width, height=fr_height)
             pre_date = cur_date
             video.write(frame)
-
+        
         if android_connection:
             #frame = cv2.resize(image, (int(height/4), int(width/4)))
 
@@ -274,7 +286,7 @@ def run_detector():
             json_data = json.dumps(outjson)
             write_utf8(str(json_data), conn_android)
             android_connection = False
-
+    cv2.destroyAllWindows()
     video.release()
 
 def save_fire_image(image, image_name, cam, ext):
@@ -353,9 +365,9 @@ def get_cctv_frames():
 
             ##data = np.fromstring(stringData, dtype='uint8')
             img = cv2.imdecode(np.frombuffer(img_bytes, np.uint8), 1)
-            cv2.imshow('Object detector', img)
-            if cv2.waitKey(1) == ord('q'):
-                break
+            #cv2.imshow('Object detector', img)
+            #if cv2.waitKey(1) == ord('q'):
+            #    break
 
             if frame_queue.qsize() < Constants.QUEUE_SIZE:
                 frame_queue.put(img)
@@ -363,7 +375,7 @@ def get_cctv_frames():
                 frame_queue.get()
                 frame_queue.put(img)
 
-        cv2.destroyAllWindows()
+        #cv2.destroyAllWindows()
 
 '''
 type: function
