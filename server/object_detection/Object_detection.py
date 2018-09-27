@@ -27,6 +27,10 @@ import queue
 import json
 import base64
 import struct
+import datetime
+from firebase import firebase
+from pyfcm import FCMNotification
+import Constants
 
 '''
 type: function
@@ -34,25 +38,47 @@ name: init
 description: initialize required constants variables
 '''
 def init():
-    global addr, img_file_path, frame_queue, queue_size, android_connection
+    global img_file_path, frame_queue, android_connection, HD, display_width, display_height, REC, fourcc, NOTIF, SAVE
     print("init")
-
-    ip = sock.gethostname()
-    port = 9999
-    addr = (ip, port)
 
     root_folder = os.path.dirname(os.path.abspath(__file__)) # Get root directory path
     img_file_path = os.path.join(root_folder, 'test.jpg')
 
     frame_queue = queue.Queue()
-    queue_size = 30
 
     android_connection = False
+
+    HD = "off"
+    display_width = None
+    display_height = None
+    REC = False
+    NOTIF = False
+    SAVE = False
+    fourcc = cv2.VideoWriter_fourcc(*'XVID')
+
 
 def write_utf8(msg, socket):
     encoded = msg.encode(encoding='utf-8')
     socket.sendall(struct.pack('>i', len(encoded)))
     socket.sendall(encoded)
+
+def recvall(sock, size):
+    received_chunks = []
+    buf_size = 4096
+    remaining = size
+    while remaining > 0:
+        received = sock.recv(min(remaining, buf_size))
+        if not received:
+            raise Exception('unexcepted EOF')
+        received_chunks.append(received)
+        remaining -= len(received)
+    return b''.join(received_chunks)
+
+def read_utf8(sock):
+    len_bytes = recvall(sock, 4)
+    length = struct.unpack('>i', len_bytes)[0]
+    encoded = recvall(sock, length)
+    return str(encoded, encoding='utf-8')
 
 '''
 type: function
@@ -61,7 +87,7 @@ description: receive all packets by spliting total stream to 4096
 the dtype modes are string and bytes, the bytes mode is to read image byte array
 and the string mode is to read the length of total packets
 '''
-def recvall(sock, count, dtype):
+def recv_from_cctv(sock, count, dtype):
 
     if dtype == "bytes":
         buf = b''
@@ -76,13 +102,24 @@ def recvall(sock, count, dtype):
         count -= len(newbuf)
     return buf
 
+
 def convert_to_base64(image):
     img_str = cv2.imencode('.png', image)[1].tostring()
     b64 = base64.b64encode(img_str)
     return b64.decode('utf-8')
 
+def set_video_writer(video_name, fourcc, FPS, width, height):
+    global video
+
+    video = cv2.VideoWriter(video_name, fourcc, FPS, (width, height))
+
+def send_push_notif(title, body):
+    push_service = FCMNotification(api_key=Constants.PUSH_ADDR)
+    ret = push_service.notify_single_device(registration_id=Constants.REG_ID, message_title=title, message_body=body)
+    print(ret)
+    
 def run_detector():
-    global frame_queue, queue_size, android_connection, conn_android
+    global frame_queue, android_connection, conn_android, HD, display_width, display_height, video, REC, fourcc, NOTIF, SAVE
 
     # This is needed since the notebook is stored in the object_detection folder.
     sys.path.append("..")
@@ -152,22 +189,28 @@ def run_detector():
     # expand image dimensions to have shape: [1, None, None, 3]
     # i.e. a single-column array, where each item in the column has the pixel RGB value
 
+    pre_date = ""
+    warning_count = 0
+    safe_count = 0
     while True:
         # If frame queue is empty, then go to the next loop
         if frame_queue.empty() == True:
             continue
         #image = cv2.imread(PATH_TO_IMAGE)
         image = frame_queue.get()
+        frame = image.copy()
         image_expanded = np.expand_dims(image, axis=0)
-
+        
         # Perform the actual detection by running the model with the image as input
         (boxes, scores, classes, num) = sess.run(
             [detection_boxes, detection_scores, detection_classes, num_detections],
             feed_dict={image_tensor: image_expanded})
 
         # Draw the results of the detection (aka 'visulaize the results')
-
-        vis_util.visualize_boxes_and_labels_on_image_array(
+        #print("boxes: " + str(boxes[0]))
+        #print("classes: " + str(classes[0]))
+        #print("num: "+str(num[0]))
+        det_ret_list = vis_util.visualize_boxes_and_labels_on_image_array(
             image,
             np.squeeze(boxes),
             np.squeeze(classes).astype(np.int32),
@@ -177,30 +220,112 @@ def run_detector():
             line_thickness=8,
             min_score_thresh=0.80)
 
-        # All the results have been drawn on image. Now display the image.
-        #cv2.imshow('Object detector', image)
+        cv2.imshow('Object detector', image)
+        if cv2.waitKey(1) == ord('q'):
+            break
 
-        # Press any key to close the image
-        #if cv2.waitKey(1) == ord('q'):
-        #    break
+        if 0 < len(det_ret_list):
+            for det_ret in det_ret_list:
+                cats_list = det_ret["cats"]
+                
+                for cats_str in cats_list: 
+                    splt_cat = cats_str.split(":")
+                    #print("category:{0}, prob:{1}".format(splt_cat[0], splt_cat[1]))
+                    if splt_cat[0] == "fire":
+                        warning_count+=1
+                        safe_count = 0
+                        print(cats_str)
+                        #print(warning_count)
+                    else:
+                        safe_count += 1
+        
+        if warning_count >= Constants.NOTIF_COUNT:
+            if NOTIF:
+                notif_thread = threading.Thread(target=send_push_notif, args=("A fire has been detected", "Please check your CCTV App", ))
+                notif_thread.start()
+                notif_thread.join()
+                NOTIF = False
+            warning_count = 0
 
+            splt_time = str(datetime.datetime.now()).split(" ")
+            
+            image_name = "{0}_{1}_{2}_{3}".format(splt_time[0], splt_time[1][0:2], splt_time[1][3:5], splt_time[1][6:8])
+
+            if SAVE:
+                update_log_db(image_name, "CAM01")
+                save_fire_image(image, image_name, "CAM01", "png")
+    
+        if safe_count >= Constants.NOTIF_COUNT:
+            warning_count = 0
+        
+        if REC:
+            fr_height, fr_width = frame.shape[:2]
+            cur_date = datetime.datetime.date(datetime.datetime.now())
+            if pre_date != cur_date:
+                file_names = os.listdir(Constants.REC_DIR)
+                file_names.sort()
+                num_of_files = len(file_names)
+                if num_of_files > 3:
+                    os.remove(os.path.join(Constants.REC_DIR, file_names[0]))
+                set_video_writer(os.path.join(Constants.REC_DIR, str(cur_date)+".avi"), fourcc, 20, width=fr_width, height=fr_height)
+            pre_date = cur_date
+            video.write(frame)
+        
         if android_connection:
-            width, height = image.shape[:2]
             #frame = cv2.resize(image, (int(height/4), int(width/4)))
 
-            # HD Mode
-            frame = cv2.resize(image, (774, 681))
+            if HD == "on": 
+                rsz_frame = cv2.resize(frame, (int(display_height/2), int(display_width/2)))
+            else:
+                rsz_frame = cv2.resize(frame, (int(display_height/6), int(display_width/6)))
 
-            encoded = convert_to_base64(frame)
+            encoded = convert_to_base64(rsz_frame)
             outjson = {}
             outjson['img'] = encoded
             outjson['state'] = "Normal"
             json_data = json.dumps(outjson)
             write_utf8(str(json_data), conn_android)
             android_connection = False
+    cv2.destroyAllWindows()
+    video.release()
 
-    # Clean up
-    #cv2.destroyAllWindows()
+def save_fire_image(image, image_name, cam, ext):
+    fire_dir = os.path.join(Constants.CUR_DIR, "fire")
+    cam_dir = os.path.join(fire_dir, cam)
+    img_path = os.path.join(cam_dir, image_name+"."+ext)
+    cv2.imwrite(img_path, image)
+
+def update_log_db(image_name, cam):
+    fb = firebase.FirebaseApplication(Constants.DB_ADDR, None)
+    result = fb.get("/users/user1/"+cam+"/log", None)
+
+    result["date"].append(image_name)
+    result["num_of_logs"] = 1 + int(result["num_of_logs"])
+    result = fb.put("/users/user1/CAM01", "log", result)
+
+def send_fire_image(cam, date):
+    global display_width, display_height
+
+    fire_dir = os.path.join(Constants.CUR_DIR, "fire")
+    cam_dir = os.path.join(fire_dir, cam)
+    frame = cv2.imread(os.path.join(cam_dir, date+".png"))
+    rsz_frame = cv2.resize(frame, (int(display_width/4), int(display_height/4)))
+    encoded = convert_to_base64(rsz_frame)
+    outjson = {}
+    outjson['encoded'] = encoded
+    outjson['state'] = "Fire"
+    json_data = json.dumps(outjson)
+    write_utf8(str(json_data), conn_android)
+
+def send_info_from_firebase(cam, title):
+    global conn_android
+
+    print(cam)
+    fb = firebase.FirebaseApplication(Constants.DB_ADDR, None)
+    user_name = "user1"
+    outjson = fb.get("/users/"+user_name+"/"+str(cam)+"/"+str(title), None)
+    print(outjson)
+    write_utf8(str(outjson), conn_android)
 
 '''
 type: function
@@ -208,34 +333,49 @@ name: get_cctv_frames
 description: Get cctv frames from raspberry pi 
 '''
 def get_cctv_frames():
-    global addr, frame_queue, queue_size
-    print('Wating raspberry pi...')
+    global frame_queue
 
-    server = sock.socket(sock.AF_INET, sock.SOCK_STREAM)
-    print("Address: {0}".format(addr))
-    server.bind(addr)
-    
-    print('listen')
-    server.listen(1) # listen and wait for one client
-
-    conn, addr = server.accept() # accept
-    print("Client connected: {0}".format(addr))
- 
     while True:
-        data_len = recvall(conn, 16, dtype="string")
-        print(data_len)
-        img_bytes = recvall(conn, int(data_len), dtype="bytes")
-        #data = np.fromstring(stringData, dtype='uint8')
-        img = cv2.imdecode(np.frombuffer(img_bytes, np.uint8), 1)
+        print('Wating cctv...')
 
-        if frame_queue.qsize() < queue_size:
-            frame_queue.put(img)
-        else:
-            frame_queue.get()
-            frame_queue.put(img)
+        server = sock.socket(sock.AF_INET, sock.SOCK_STREAM)
+        print("Address: {0}: {1}".format(Constants.IP, Constants.CCTV_PORT))
+        server.bind((Constants.IP, Constants.CCTV_PORT))
+        
+        print('listen')
+        server.listen(1) # listen and wait for one client
 
-    server.close()
-    cv2.destroyAllWindows()
+        conn, addr = server.accept() # accept
+        print("cctv connected: {0}".format(addr))
+
+        while True:
+            try:
+                data_len = recv_from_cctv(conn, 16, dtype="string")
+                #print(data_len)
+                img_bytes = recv_from_cctv(conn, int(data_len), dtype="bytes")
+                
+            except ConnectionResetError:
+                print("The cctv was forcefully disconnected.")
+                server.close()
+                break
+            except Exception:
+                print("The cctv was forcefully disconnected.")
+                server.close()
+                break
+
+            ##data = np.fromstring(stringData, dtype='uint8')
+            img = cv2.imdecode(np.frombuffer(img_bytes, np.uint8), 1)
+            #cv2.imshow('Object detector', img)
+            #if cv2.waitKey(1) == ord('q'):
+            #    break
+
+            if frame_queue.qsize() < Constants.QUEUE_SIZE:
+                frame_queue.put(img)
+            else:
+                frame_queue.get()
+                frame_queue.put(img)
+
+        #cv2.destroyAllWindows()
 
 '''
 type: function
@@ -243,31 +383,57 @@ name: wait_cctv
 description: wait android connection
 '''
 def wait_android():
-    global addr, img_file_path, android_connection, conn_android
+    global img_file_path, android_connection, conn_android, HD, display_width, display_height
 
     while True:
         print("Wating android...")
 
         server = sock.socket(sock.AF_INET, sock.SOCK_STREAM) # initialize server socket
-        server.bind((sock.gethostname(), 8888)) # socket bind
+        server.bind((Constants.IP, Constants.ANDR_PORT)) # socket bind
 
         print('listen to android connection')
         server.listen(1) # listen and wait for one client
 
-        conn_android, addr = server.accept() # accept
+        conn_android, _ = server.accept() # accept
 
         while True:
-            buff = conn_android.recv(1024)
-            buff = buff.decode("utf-8")
-            #print(buff)
-            if buff == "Conn":
+            try:
+                msg = read_utf8(conn_android)
+            except ConnectionResetError:
+                print("The connection was forcefully disconnected.")
+                server.close()
+                break
+            except Exception:
+                print("The connection was forcefully disconnected.")
+                server.close()
+                break
+
+            msg = json.loads(msg)
+            status = msg["status"]
+            #print(status)
+            if status == "conn":
+                HD = msg["hd"]
+                display_width = msg["width"]
+                display_height = msg["height"]
                 android_connection = True
                 #print("Android Connected")
 
-            elif buff == "Exit":
+            elif status == "exit":
                 android_connection = False
                 server.close()
                 #print("Android Exited")
+                break
+
+            elif status == "info":
+                send_info_from_firebase(msg["camera"], status)
+                break
+            elif status == "log":
+                send_info_from_firebase(msg["camera"], status)
+                break
+            elif status == "fire":
+                display_width = msg["width"]
+                display_height = msg["height"]
+                send_fire_image(msg["camera"], msg["date"])
                 break
     
 if __name__ == "__main__":
