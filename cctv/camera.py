@@ -96,7 +96,7 @@ def run_cctv():
         print("Socket Error>> ", ex)
         return None
     
-    # Obtain a continuous frame.
+    # Obtain a continuous frame and convert RGB to BGR because Python image format is BGR.
     for raw_frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port=True):    
         # Convert raw frame data to array data
         frame = raw_frame.array
