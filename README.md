@@ -6,7 +6,7 @@
 
 # Overall Architecture
 <p align="center">
-    <img src="images/architecture2.PNG", width="640">
+    <img src="images/architecture2.PNG", width="1024">
 </p>
 
 # Timeline
