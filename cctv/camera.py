@@ -72,12 +72,16 @@ def run_cctv():
         frame = raw_frame.array
         try:
             send_frame(conn, frame)
+            msg = conn.recv(10)
+            if str(msg, "utf-8") != "OK":
+                break
         except IOError:
             break
         raw_capture.truncate(0)
         
     conn.close()
     camera.close()
+    
 if __name__ == "__main__":
     init()
     run_cctv()
