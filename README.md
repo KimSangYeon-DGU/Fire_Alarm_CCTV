@@ -88,8 +88,7 @@
 
     - Make demo server and client(success connecting python server and android client using TCP socket.)
 
-# Train results
-    - First train
+# Detection results
 <p align="left">
     <img src="images/first_01.png", width="400">
     <img src="images/first_02.png", width="480">
