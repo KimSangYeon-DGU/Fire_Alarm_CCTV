@@ -106,7 +106,7 @@ def run_cctv():
 
             # Receive message from server for their sync
             msg = conn.recv(10)
-
+            
             # Verify that the server received well
             if str(msg, "utf-8") != "OK":
                 break
