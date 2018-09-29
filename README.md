@@ -1,10 +1,11 @@
 # 🔥 2018 OSS Fire Alarm CCTV 🔥
 - This is a repository for 2018 OSS Grand Developers Challenge (2018/09/01 ~ 2018/10/1)
 
-# What functionality has the CCTV?
-- It detects the fire situation and inform users of that. It shows the fire picture users so the user exactly can check it. It plans to use an artificial intelligence and an image processing methods.
+# Features
+- Fire detection
+- Mobile application for users 
 
-# Overall Architecture
+# System Architecture
 <p align="center">
     <img src="images/architecture2.PNG", width="1024">
 </p>
@@ -86,8 +87,7 @@
 
     - Make demo server and client(success connecting python server and android client using TCP socket.)
 
-# Train results
-    - First train
+# Detection results
 <p align="left">
     <img src="images/first_01.png", width="400">
     <img src="images/first_02.png", width="480">
