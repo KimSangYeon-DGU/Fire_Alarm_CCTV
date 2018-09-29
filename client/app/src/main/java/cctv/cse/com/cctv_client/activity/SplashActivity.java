@@ -7,6 +7,10 @@ import android.os.Bundle;
 import cctv.cse.com.cctv_client.R;
 import cctv.cse.com.cctv_client.activity.MainActivity;
 
+/**
+ * Created by sy081 on 2018-09-14.
+ * This is splash activity to show the main logo when app starts.
+ */
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -17,10 +21,18 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
+                    // Stop 3 seconds
                     sleep(3000);
+                    // Get Main activity intent
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                    // Finish this activity
                     finish();
+
+                    // Start main activity
                     startActivity(intent);
+
+                    // Fade in and out animation
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
                 } catch (InterruptedException e) {

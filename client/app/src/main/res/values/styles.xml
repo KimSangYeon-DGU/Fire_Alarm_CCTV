@@ -10,22 +10,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <!--  PopupWindow向上弹出动画 -->
-    <style name="Popwindow_Anim_Up">
-        <item name="android:windowEnterAnimation">@anim/up_in</item>
-        <!-- 指定显示的动画xml -->
-
-        <item name="android:windowExitAnimation">@anim/up_out</item>
-        <!-- 指定消失的动画xml -->
-    </style>
-
-    <!--  PopupWindow向下弹出动画 -->
+    <!--  PopupWindow Animation -->
     <style name="Popwindow_Anim_Down">
         <item name="android:windowEnterAnimation">@anim/down_in</item>
-        <!-- 指定显示的动画xml -->
+        <!-- down_in.xml -->
 
         <item name="android:windowExitAnimation">@anim/down_out</item>
-        <!-- 指定消失的动画xml -->
+        <!-- down_out.xml -->
     </style>
 
 </resources>

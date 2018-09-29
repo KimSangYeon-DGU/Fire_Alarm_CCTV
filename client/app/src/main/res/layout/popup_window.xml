@@ -18,7 +18,7 @@
         android:background="#002323" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_function_wash_time"
+        android:id="@+id/rv_function_fire_time"
         android:background="#E6F1F5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
