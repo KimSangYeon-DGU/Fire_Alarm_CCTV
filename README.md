@@ -6,7 +6,7 @@
 - It shows the fire picture users so the user exactly can check it. 
 - It plans to use an artificial intelligence and an image processing methods.
 
-# Overall Architecture
+# System Architecture
 <p align="center">
     <img src="images/architecture2.PNG", width="1024">
 </p>
