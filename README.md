@@ -2,9 +2,8 @@
 - This is a repository for 2018 OSS Grand Developers Challenge (2018/09/01 ~ 2018/10/1)
 
 # Features
-- It detects the fire situation and inform users of that. 
-- It shows the fire picture users so the user exactly can check it. 
-- It plans to use an artificial intelligence and an image processing methods.
+- Fire detection
+- Mobile application for users 
 
 # System Architecture
 <p align="center">
