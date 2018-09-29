@@ -514,6 +514,9 @@ def run_detector():
                         print(cats_str)
                     else:
                         safe_count += 1
+        else:
+            continue
+            
         # If warn count is bigger than NOTIF COUNT, send push notification to Android.
         if Constants.NOTIF_COUNT <= warn_count:
             warn_count = 0
