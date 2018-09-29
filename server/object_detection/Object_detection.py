@@ -54,7 +54,7 @@ def init():
     display_height = None
 
     # Set record mode flag to False
-    REC = False
+    REC = True
 
     # Set push notification mode flag to False
     NOTIF = False
@@ -63,7 +63,7 @@ def init():
     SAVE = False
 
     # Set image show mode flag that shows image to user using opencv window to False, if you can run this program in Non-GUI env., it should be False.
-    IM_SHOW = False
+    IM_SHOW = True
 
     # Initialize fourcc to XVID for recording frame into .avi video
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
@@ -472,9 +472,6 @@ def run_detector():
         # Get frame from frame queue
         image = frame_queue.get()
 
-        # Copy frame for other tasks.
-        frame = image.copy()
-
         # Expand image for fire detection.
         image_expanded = np.expand_dims(image, axis=0)
         
@@ -501,7 +498,7 @@ def run_detector():
                 break
 
         # if the length of det_ret_list is not zero, object(s) is detected.
-        if len(det_ret_list):
+        if 0 < len(det_ret_list):
 
             # Search fire among detected objects.
             for det_ret in det_ret_list:
@@ -521,7 +518,7 @@ def run_detector():
         if Constants.NOTIF_COUNT <= warn_count:
             warn_count = 0
             # Check if the notification is possible.
-            if check_notif_possible():
+            if NOTIF and check_notif_possible():
                 # Call function using thread.
                 # first args is title and another is content. 
                 notif_thread = threading.Thread(target=send_push_notif, args=("A fire has been detected", "Please check your CCTV App", ))
@@ -552,7 +549,7 @@ This function is to get frames from CCTV.
 And record frames in a avi video format.
 '''
 def wait_cctv():
-    global frame_queue, REC, fourcc
+    global frame_queue, REC, fourcc, cur_frame
 
     # Set to pre_date to "" and it represents video name.
     pre_date = ""
@@ -579,21 +576,16 @@ def wait_cctv():
             # If error occurs, then socket is closed.
             try:
                 data_len = recv_from_cctv(conn, 16, dtype="string")
-                #print(data_len)
                 img_bytes = recv_from_cctv(conn, int(data_len), dtype="bytes")
-                
-            except ConnectionResetError:
-                print("The cctv was forcefully disconnected.")
-                server.close()
-                break
-            except Exception:
-                print("The cctv was forcefully disconnected.")
+                conn.send(b"OK")
+            except Exception as ex:
+                print("The cctv was forcefully disconnected>> ", ex)
                 server.close()
                 break
 
             # Decode bytes image to numpy image
             frame = cv2.imdecode(np.frombuffer(img_bytes, np.uint8), 1)
-            
+            cur_frame = frame.copy()
             # Record frames.
             if REC:
                 # Record videos by date and remove the oldest files if there are more than 60 recorded files.
@@ -629,7 +621,7 @@ This function is to communicate with android client.
 Send frame, log, and info data to android. 
 '''
 def wait_android():
-    global img_file_path, android_connected, conn_android, HD, display_width, display_height, frame_queue
+    global img_file_path, android_connected, conn_android, HD, display_width, display_height, cur_frame
     
     while True:
         print("Wating android...")
@@ -652,12 +644,9 @@ def wait_android():
             # If error occurs, the socket is closed.
             try:
                 msg = read_utf8(conn_android)
-            except ConnectionResetError:
-                print("The connection was forcefully disconnected.")
-                server.close()
-                break
-            except Exception:
-                print("The connection was forcefully disconnected.")
+
+            except Exception as ex:
+                print("The android was forcefully disconnected>> ", ex)
                 server.close()
                 break
 
@@ -666,7 +655,6 @@ def wait_android():
 
             # Get status in json data
             status = msg["status"]
-
             # Process according to status
             # conn: Send frame to android
             # exit: Close the socket.
@@ -678,15 +666,10 @@ def wait_android():
                 HD = msg["hd"]
                 display_width = msg["width"]
                 display_height = msg["height"]       
-                if frame_queue.qsize():
-                    frame = frame_queue.get()
-                else:
-                    break
 
-                json_data = convert_img_to_json(frame, "Normal")
-               
+                json_data = convert_img_to_json(cur_frame, "Normal")
                 write_utf8(str(json_data), conn_android)
-                
+
             elif status == "exit":
                 android_connected = False
                 server.close()
