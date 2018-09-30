@@ -54,7 +54,7 @@ def init():
     display_height = None
 
     # Set record mode flag to False
-    REC = True
+    REC = False
 
     # Set push notification mode flag to False
     NOTIF = False
@@ -63,7 +63,7 @@ def init():
     SAVE = False
 
     # Set image show mode flag that shows image to user using opencv window to False, if you can run this program in Non-GUI env., it should be False.
-    IM_SHOW = True
+    IM_SHOW = False
 
     # Initialize fourcc to XVID for recording frame into .avi video
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
@@ -374,10 +374,12 @@ def check_notif_possible():
     if cur_notif_time[0] != date:
         # Save new date
         cur_notif_time[0] = date
+        cur_notif_time[1] = new_time
         return True
     else:
        if Constants.NOTIF_MINIUTE <= (new_time - cur_notif_time[1]):
            # Save new minutes
+           cur_notif_time[0] = date
            cur_notif_time[1] = new_time
            return True
     return False
