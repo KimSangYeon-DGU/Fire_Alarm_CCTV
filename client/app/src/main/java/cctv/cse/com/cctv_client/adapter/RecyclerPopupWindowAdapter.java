@@ -79,7 +79,7 @@ public class RecyclerPopupWindowAdapter extends RecyclerView.Adapter<RecyclerPop
         private TextView timeTV;
         private OnItemClickListener mListener;
 
-        public MyViewHolder(View rootView, OnItemClickListener listener) {
+        MyViewHolder(View rootView, OnItemClickListener listener) {
             super(rootView);
             this.mListener = listener;
             timeTV = rootView.findViewById(R.id.tv_item_time);
