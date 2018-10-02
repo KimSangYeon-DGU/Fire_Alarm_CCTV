@@ -4,6 +4,7 @@
 # Features
 - Fire detection
 - Fire alarm
+- Mobile application for uses
 
 # System Architecture
 <p align="center">
