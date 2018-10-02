@@ -2,7 +2,7 @@
 - This is a repository for 2018 OSS Grand Developers Challenge (2018/09/01 ~ 2018/10/1)
 
 # Features
-- Frame streaming between Raspberry Pi and Python server.
+- Image streaming between Raspberry Pi and Python server.
 - Fire detection & alarm
 - Mobile application for uses
 
