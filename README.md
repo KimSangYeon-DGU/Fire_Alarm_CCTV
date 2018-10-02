@@ -2,8 +2,7 @@
 - This is a repository for 2018 OSS Grand Developers Challenge (2018/09/01 ~ 2018/10/1)
 
 # Features
-- Fire detection
-- Fire alarm
+- Fire detection & alarm
 - Mobile application for uses
 
 # System Architecture
