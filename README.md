@@ -3,7 +3,7 @@
 
 # Features
 - Fire detection
-- Mobile application for users 
+- Fire Alarm
 
 # System Architecture
 <p align="center">
