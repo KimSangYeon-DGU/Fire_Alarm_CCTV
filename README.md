@@ -5,6 +5,8 @@
 - Image streaming between Raspberry Pi and Python server.
 - Fire detection & alarm
 - Mobile application for uses
+- Firebase Real-time database
+- Firebase Cloud Messaging(FCM)
 
 # System Architecture
 <p align="center">
