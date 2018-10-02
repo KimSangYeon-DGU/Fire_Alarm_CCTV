@@ -28,7 +28,7 @@
     <currently working>
 
     
-<b>13. Make up datasets for testing model's accuracy.
+<b>13. Make up datasets for testing model's accuracy.</b>
 
     <currently working>
     
