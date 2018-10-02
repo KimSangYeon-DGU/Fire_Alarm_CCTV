@@ -3,7 +3,7 @@
 
 # Features
 - Fire detection
-- Fire Alarm
+- Fire alarm
 
 # System Architecture
 <p align="center">
