@@ -23,14 +23,7 @@
 <b>6. If needed, increase a performance of the model</b>
     
     <currently working>
-    
-<b>9. System Test</b>
 
-    <currently working>
-    
-<b>11. Make a final report and demonstration video</b>
-    
-    <currently working, TODO: final report, DONE: demo video>
     
 <b>13. Make up datasets for test to calculate model accuracy</b> 
 
@@ -66,19 +59,21 @@
 <b>8. Make client application</b> 
     
     (Done: Recycler Popup window, splash, Push alarm, HD, Call 119)
-    
+
+<b>9. System Test</b>
+
 <b>10. Communication between Raspberry Pi and Python server.</b>
-    
-    - Should check if it is available for streaming images
-        
+
+<b>11. Make a final report and demonstration video</b>
+
 <b>12. Build train enviornment</b>
     
 <b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client </b>
-    
+   
 <b>15. Design a user-friendly UI/UX on android client app</b>
 
 <b>16. Make a database server </b>
-
+    
 <b>17. Additional functionality.</b>
     
     (Done: Server recording, and removing oldest file when it is expiring, Getting detection result from server using log)
