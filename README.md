@@ -20,7 +20,7 @@
 
 # TODO List        
     
-# Done
+# DONE List
 <b>1. Gather the information</b>
 
     - Check which Raspberry pi model and camera fits the project
