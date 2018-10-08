@@ -20,7 +20,7 @@
 
 # TODO List
 
-<b>18. Maintain & Upgrade this project
+<b>18. Maintain & Upgrade this project</b>
     
 # DONE List
 <b>1. Gather the information</b>
