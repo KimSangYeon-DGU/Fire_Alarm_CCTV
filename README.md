@@ -19,18 +19,6 @@
 </p>
 
 # TODO List        
-<b>5. Test model</b>
-    
-    <currently working>
-    
-<b>6. If needed, increase a performance of the model</b>
-    
-    <currently working>
-
-    
-<b>13. Make up datasets for testing model's accuracy.</b>
-
-    <currently working>
     
 # Done
 <b>1. Gather the information</b>
@@ -54,6 +42,10 @@
     - Make train dataset(total 1815, will be splited into train and test)
     
 <b>4. First train custom model</b>
+
+<b>5. Test model</b>
+
+<b>6. If needed, increase a performance of the model</b>
     
 <b>7. Make server application</b> 
     
@@ -70,7 +62,9 @@
 <b>11. Make a final report and demonstration video</b>
 
 <b>12. Build train enviornment</b>
-    
+
+<b>13. Make up datasets for testing model's accuracy.</b>  
+
 <b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client </b>
    
 <b>15. Design a user-friendly UI/UX on android client app</b>
