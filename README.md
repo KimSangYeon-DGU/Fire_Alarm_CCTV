@@ -19,6 +19,7 @@
 </p>
 
 # TODO List        
+    - Finished
     
 # DONE List
 <b>1. Gather the information</b>
