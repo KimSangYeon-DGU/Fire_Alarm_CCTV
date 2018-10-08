@@ -18,7 +18,9 @@
     <img src="images/gantt-chart.png", width="1024", height="512">
 </p>
 
-# TODO List        
+# TODO List
+
+<b>18. Maintain & Upgrade this project
     
 # DONE List
 <b>1. Gather the information</b>
