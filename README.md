@@ -10,7 +10,7 @@
 
 # System Architecture
 <p align="center">
-    <img src="images/architecture2.PNG", width="1024">
+    <img src="images/architecture.png", width="1024">
 </p>
 
 # Timeline
