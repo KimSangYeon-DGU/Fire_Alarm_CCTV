@@ -21,7 +21,7 @@
     <img src="images/architecture.png", width="1024">
 </p>
 
-# Timeline(2018/09/01 ~ 2018/9/30)
+# Timeline (2018/09/01 ~ 2018/9/30)
 <p align="center">
     <img src="images/gantt-chart2.png", width="1024", height="512">
 </p>
