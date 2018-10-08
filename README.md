@@ -70,7 +70,10 @@
     <img src="images/first_01.png", width="400">
     <img src="images/first_02.png", width="480">
 </p>
-
+    
+# Useful info
+- The TOD(TensorFlow Object Detection) on the Raspberry Pi run environments are Tensorflow 1.9, cudNN 7.2.1 and cuda 9.0(Those are the best setting without error)
+- Firebase library dosen't work in Python 3.7 
 
 # Useful Links
 - The method to transplant deep learning model on Raspberry pi 3
@@ -78,13 +81,5 @@
     
 - The method to train deep learning model using tensorflow object detecion API.
     - https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10
-    
-    
-# Useful info
-- The TOD(TensorFlow Object Detection) on the Raspberry Pi run environments are Tensorflow 1.9, cudNN 7.2.1 and cuda 9.0(Those are the best setting without error)
-- Firebase library dosen't work in Python 3.7 
-
-# Performance objectives
-- The information should be gathered to decide performance of the CCTV, so I don't state it yet.
 
 # God Bless You
