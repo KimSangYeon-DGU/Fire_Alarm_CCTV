@@ -81,7 +81,7 @@
     
     
 # Useful info
-- The TOD(TensorFlow Object Detection) on the Raspberry Pi run environments are Tensorflow 1.9, cudNN 7.1.2 and cuda 8.0(Those are the best setting without error)
+- The TOD(TensorFlow Object Detection) on the Raspberry Pi run environments are Tensorflow 1.9, cudNN 7.2.1 and cuda 9.0(Those are the best setting without error)
 - Firebase library dosen't work in Python 3.7 
 
 # Performance objectives
