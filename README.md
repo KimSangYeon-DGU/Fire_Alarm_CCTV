@@ -1,5 +1,5 @@
 # 🔥 2018 OSS Fire Alarm CCTV 🔥
-<b> <font size = 20> This is a repository for 2018 OSS Grand Developers Challenge (2018/09/01 ~ 2018/10/1) </font></b>
+<h2><b>This is a repository for 2018 OSS Grand Developers Challenge (2018/09/01 ~ 2018/10/1)</b></h2>
 
 # Features
 - Image streaming between Raspberry Pi and Python server.
