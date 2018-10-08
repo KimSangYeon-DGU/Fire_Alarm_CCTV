@@ -67,13 +67,13 @@
 
     - Make demo server and client(success connecting python server and android client using TCP socket.)
 
-# Detection results
+# Detection Results
 <p align="left">
     <img src="images/first_01.png", width="400">
     <img src="images/first_02.png", width="480">
 </p>
     
-# Useful info
+# Useful Information
 - The TOD(TensorFlow Object Detection) on the Raspberry Pi run environments are Tensorflow 1.9, cudNN 7.2.1 and cuda 9.0(Those are the best setting without error)
 - Firebase library dosen't work in Python 3.7 
 
