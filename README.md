@@ -3,9 +3,9 @@
 
 # DEMO
 <p align="left">
-    <img src="images/cctv_demo.gif", width="256">
-    <img src="images/server_demo.gif", width="256">
-    <img src="images/client_demo.gif", width="256">
+    <img src="images/cctv_demo.gif", width="320">
+    <img src="images/server_demo.gif", width="320">
+    <img src="images/client_demo.gif", width="320">
 </p>
 
 
