@@ -10,10 +10,8 @@
 # Installation
 - Install TensorFlow (In my case, I installed version 1.9.0)
     <code>
-    
         ex) pip install tensorflow==1.9.0
         - pip install tensorflow==[version]
-        
     </code>
     
 - Install OpenCV
