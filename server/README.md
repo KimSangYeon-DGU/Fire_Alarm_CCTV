@@ -7,6 +7,11 @@
 - Access to Real-time database in Firebase.
 - Recording in a video format per day.
 
+# Environment
+- Windows10
+- Anaconda3 
+- Python3 (3.6, but firebase library doesn't work in 3.7)
+
 # Installation
 - Install TensorFlow (In my case, I installed version 1.9.0)
 
@@ -26,7 +31,6 @@
         pip install requests       
         pip install python-firebase
 
-# Environment
-- Windows10
-- Anaconda3 
-- Python3 (3.6, but firebase library doesn't work in 3.7)
+# Run
+        
+        python Object_detection.py
