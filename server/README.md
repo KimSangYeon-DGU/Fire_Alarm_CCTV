@@ -1,6 +1,11 @@
 # Server
 <h3><b>A Server that mediates Raspberry Pi 3 and Android apps</b></h3>
 
+# DEMO
+<p align="center">
+    <img src="images/server_demo.gif", width="288">
+</p>
+
 # Features
 - Image streaming between CCTV and client.
 - Fire detection and notification.
