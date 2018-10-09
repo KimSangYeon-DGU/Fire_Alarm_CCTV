@@ -8,13 +8,13 @@
 - Recording in a video format per day.
 
 # Installation
-    - Install tensorflow
-    - Install OpenCV
-    - Install FCM
-        - pip install pyfcm
-    - Install Firebase
-        - pip install requests
-        - pip install python-firebase
+- Install tensorflow
+- Install OpenCV
+- Install FCM
+    - pip install pyfcm
+- Install Firebase
+    - pip install requests
+    - pip install python-firebase
 
 # Libraries
     - FCM(Firebase Cloud Messaging)
