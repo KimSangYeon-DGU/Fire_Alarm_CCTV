@@ -17,12 +17,9 @@
 - google-services.json (Google API key, https://firebase.google.com/docs/android/setup)
 - Android Studio 3.0.1
 
+# Installation
+    - Put your google-services.json file to client app directory.
+    - Build and run the project.
+
 # Run
-- Put your google-services.json file to your app directory.
-
-[App directory path]
-
-Windows: Fire_Alarm_CCTV\client\app\  
-Ubuntu: Fire_Alarm_CCTV/client/app/
-
-- Just run cctv application in your phone
+    - Run CCTV Application.
