@@ -2,6 +2,10 @@
 <h3><b>A Server that mediates Raspberry Pi 3 and Android apps</b></h3>
 
 # Features
+- Image streaming between CCTV and client.
+- Fire detection and notification.
+- Access to Real-time database in Firebase.
+- Recording in a video format per day.
 
 # Libraries
     - FCM(Firebase Cloud Messaging)
