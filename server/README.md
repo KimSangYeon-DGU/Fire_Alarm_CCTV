@@ -10,7 +10,7 @@
 - Image streaming between CCTV and client.
 - Fire detection and notification.
 - Access to Real-time database in Firebase.
-- Record  in a video format per day.
+- Record frames in a video format per day.
 
 # Prerequisites
 - Windows10
