@@ -8,7 +8,7 @@
 - Recording in a video format per day.
 
 # Installation
-- Install tensorflow
+- Install TensorFlow
 - Install OpenCV
 - Install FCM
     - pip install pyfcm
