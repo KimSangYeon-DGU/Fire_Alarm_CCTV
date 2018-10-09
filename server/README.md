@@ -32,5 +32,4 @@
         pip install python-firebase
 
 # Run
-        
-        python Object_detection.py
+    python Object_detection.py
