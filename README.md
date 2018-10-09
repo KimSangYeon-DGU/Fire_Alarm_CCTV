@@ -5,7 +5,7 @@
 <p align="left">
     <img src="images/cctv_demo.gif", width="288">
     <img src="images/server_demo.gif", width="288">
-    <img src="images/client_demo.gif", width="288">
+    <img src="images/client_demo2.gif", width="288">
 </p>
 
 
@@ -18,12 +18,12 @@
 
 # System Architecture
 <p align="center">
-    <img src="images/architecture.png", width="1024">
+    <img src="images/architecture3.png", width="1024">
 </p>
 
-# Timeline
+# Timeline (2018/09/01 ~ 2018/09/30)
 <p align="center">
-    <img src="images/gantt-chart.png", width="1024", height="512">
+    <img src="images/gantt-chart2.png", width="1024", height="512">
 </p>
 
 # TODO List
