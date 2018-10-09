@@ -15,4 +15,5 @@
         - pip install python-firebase
 
 # Environment
-- Python3 (But, in Python 3.7, the firebase library dosen't work..., I checked it works in version 3.6)
+- Windows10
+- Python3 (3.6, but firebase library doesn't work in 3.7)
