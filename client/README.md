@@ -19,7 +19,7 @@
 
 # Installation
     - Put your google-services.json file to client app directory.
-    - Build and run the project.
+    - Build and run the project in Android Studio.
 
 # Run
-    - Run CCTV Application.
+    - Run CCTV Application in your mobile phone.
