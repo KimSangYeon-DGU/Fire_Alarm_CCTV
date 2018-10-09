@@ -3,7 +3,7 @@
 
 # DEMO
 <p align="center">
-    <img src="/images/client_demo.gif", width="480">
+    <img src="/images/client_demo2.gif", width="480">
 </p>
 
 # Features
