@@ -15,7 +15,7 @@
 # Prerequisites
 - Windows10
 - Anaconda3 
-- Python3 (3.6, but firebase library doesn't work in 3.7)
+- Python3.6 (but firebase library doesn't work in 3.7)
 - CUDA 9.0
 - cuDNN 7.2.1
 
