@@ -8,10 +8,15 @@
 - Recording in a video format per day.
 
 # Installation
-- Install TensorFlow
+- Install TensorFlow (In my case, I installed version 1.9)
+    - pip install tensorflow==<version>
+    
 - Install OpenCV
+    - conda install -c menpo opencv
+    
 - Install FCM
     - pip install pyfcm
+    
 - Install Firebase
     - pip install requests
     - pip install python-firebase
@@ -25,4 +30,5 @@
 
 # Environment
 - Windows10
+- Anaconda3 
 - Python3 (3.6, but firebase library doesn't work in 3.7)
