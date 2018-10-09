@@ -86,6 +86,9 @@
 - Firebase library dosen't work in Python 3.7 
 
 # Useful Links
+- Tensorflow's model repository
+    - https://github.com/tensorflow/models
+
 - The method to transplant deep learning model on Raspberry pi 3
     - https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi
     
