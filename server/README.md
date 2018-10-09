@@ -11,6 +11,8 @@
 - Windows10
 - Anaconda3 
 - Python3 (3.6, but firebase library doesn't work in 3.7)
+- CUDA 9.0
+- cuDNN 7.2.1
 
 # Installation
 - Install TensorFlow (In my case, I installed version 1.9.0)
