@@ -7,7 +7,7 @@
 </p>
 
 # Features
-- Watch the cctv screen
+- Watch the CCTV screen
 - HD mode
 - Watch previous fire detection results
 - Check the information of CCTV
