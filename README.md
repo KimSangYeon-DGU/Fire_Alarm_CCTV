@@ -3,7 +3,7 @@
 
 # DEMO
 <p align="left">
-    <img src="images/cctv_demo.gif", width="288">
+    <img src="images/cctv_demo.gif", width="288",  alt="CCTV">
     <img src="images/server_demo.gif", width="288">
     <img src="images/client_demo2.gif", width="288">
 </p>
