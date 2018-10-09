@@ -14,14 +14,17 @@
         - pip install tensorflow==[version]
 
 - Install OpenCV
-    - conda install -c menpo opencv
+        
+        - conda install -c menpo opencv
     
 - Install FCM
-    - pip install pyfcm
+        
+        - pip install pyfcm
     
 - Install Firebase
-    - pip install requests
-    - pip install python-firebase
+        
+        - pip install requests       
+        - pip install python-firebase
 
 # Libraries
     - FCM(Firebase Cloud Messaging)
