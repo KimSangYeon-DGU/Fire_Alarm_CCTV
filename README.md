@@ -92,4 +92,10 @@
 - The method to train deep learning model using tensorflow object detecion API.
     - https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10
 
+- PyFCM
+    - https://github.com/olucurious/PyFCM
+
+- Python-Firebase
+    - https://github.com/ozgur/python-firebase
+
 # God Bless You
