@@ -1,5 +1,5 @@
 # CCTV
-<h3><b>A CCTV that watch specific area</b></h3>
+<h3><b>A CCTV that watch specific area and send frames to server in real time</b></h3>
 
 # DEMO
 <p align="center">
