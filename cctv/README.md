@@ -12,7 +12,7 @@
 - Access to Real-time database in Firebase.
 - Recording in a video format per day.
 
-# Environment
+# Prerequisites
 - Windows10
 - Anaconda3 
 - Python3 (3.6, but firebase library doesn't work in 3.7)
