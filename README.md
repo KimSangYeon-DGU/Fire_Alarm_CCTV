@@ -18,7 +18,7 @@
 
 # System Architecture
 <p align="center">
-    <img src="images/architecture.png", width="1024">
+    <img src="images/architecture3.png", width="1024">
 </p>
 
 # Timeline (2018/09/01 ~ 2018/09/30)
