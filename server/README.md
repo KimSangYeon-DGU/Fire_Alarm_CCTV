@@ -12,7 +12,7 @@
 
     <code>
         Ex) pip install tensorflow==1.9.0
-    
+
         - pip install tensorflow==[version]
     </code>
     
