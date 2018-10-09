@@ -1,5 +1,5 @@
-# Server
-<h3><b>A Server that mediates Raspberry Pi 3 and Android apps</b></h3>
+# Client
+<h3><b>A Client that provides interface between Server and User</b></h3>
 
 # DEMO
 <p align="center">
@@ -12,7 +12,7 @@
 - Access to Real-time database in Firebase.
 - Recording in a video format per day.
 
-# Environment
+# Prerequisites
 - Windows10
 - Anaconda3 
 - Python3 (3.6, but firebase library doesn't work in 3.7)
