@@ -19,6 +19,7 @@
 
 # Run
 - Put your google-services.json file to your app directory.
+
 [App directory path]
 Windows: Fire_Alarm_CCTV\client\app\  
 Ubuntu: Fire_Alarm_CCTV/client/app/
