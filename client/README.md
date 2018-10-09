@@ -13,5 +13,5 @@
 - Recording in a video format per day.
 
 # Prerequisites
-- google-services.json (Google API key)
+- google-services.json (Google API key, https://firebase.google.com/docs/android/setup)
 - Android Studio 3.0.1
