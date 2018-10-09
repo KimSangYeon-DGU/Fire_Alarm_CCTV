@@ -9,9 +9,10 @@
 
 # Installation
 - Install TensorFlow (In my case, I installed version 1.9.0)
-    - pip install tensorflow==[version]
-    
-    ex) pip install tensorflow==1.9.0
+    <code>
+        - pip install tensorflow==[version]
+        ex) pip install tensorflow==1.9.0
+    </code>
     
 - Install OpenCV
     - conda install -c menpo opencv
