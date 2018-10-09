@@ -3,7 +3,7 @@
 
 # DEMO
 <p align="center">
-    <img src="/images/server_demo.gif", width="480">
+    <img src="/images/client_demo.gif", width="480">
 </p>
 
 # Features
@@ -13,30 +13,5 @@
 - Recording in a video format per day.
 
 # Prerequisites
-- Windows10
-- Anaconda3 
-- Python3 (3.6, but firebase library doesn't work in 3.7)
-- CUDA 9.0
-- cuDNN 7.2.1
-
-# Installation
-- Install TensorFlow (In my case, I installed version 1.9.0)
-
-      Ex) pip install tensorflow==1.9.0
-      pip install tensorflow-gpu==[version]
-
-- Install OpenCV
-        
-      conda install -c menpo opencv
-    
-- Install FCM
-        
-      pip install pyfcm
-    
-- Install Firebase
-        
-      pip install requests       
-      pip install python-firebase
-
-# Run
-    python Object_detection.py
+- google-services.json (Google API key)
+- Android Studio 3.0.1
