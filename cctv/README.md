@@ -10,7 +10,8 @@
 - Sending the frames to server in real time
 
 # Prerequisites
-- OpenCV
+- Python 3.5+
+- OpenCV 3.4+
 
 # Installation
 - Update the Raspberry Pi 3
