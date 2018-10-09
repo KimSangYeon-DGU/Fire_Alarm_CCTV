@@ -11,27 +11,20 @@
 - Install TensorFlow (In my case, I installed version 1.9.0)
 
         Ex) pip install tensorflow==1.9.0
-        - pip install tensorflow==[version]
+        pip install tensorflow==[version]
 
 - Install OpenCV
         
-        - conda install -c menpo opencv
+        conda install -c menpo opencv
     
 - Install FCM
         
-        - pip install pyfcm
+        pip install pyfcm
     
 - Install Firebase
         
-        - pip install requests       
-        - pip install python-firebase
-
-# Libraries
-    - FCM(Firebase Cloud Messaging)
-        - pip install pyfcm
-    - Firebase(Real-time database)
-        - pip install requests
-        - pip install python-firebase
+        pip install requests       
+        pip install python-firebase
 
 # Environment
 - Windows10
