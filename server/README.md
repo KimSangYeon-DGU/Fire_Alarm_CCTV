@@ -7,6 +7,15 @@
 - Access to Real-time database in Firebase.
 - Recording in a video format per day.
 
+# Installation
+    - Install tensorflow
+    - Install OpenCV
+    - Install FCM
+        - pip install pyfcm
+    - Install Firebase
+        - pip install requests
+        - pip install python-firebase
+
 # Libraries
     - FCM(Firebase Cloud Messaging)
         - pip install pyfcm
