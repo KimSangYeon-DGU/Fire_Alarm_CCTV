@@ -100,5 +100,3 @@
 
 - Python-Firebase
     - https://github.com/ozgur/python-firebase
-
-# God Bless You
