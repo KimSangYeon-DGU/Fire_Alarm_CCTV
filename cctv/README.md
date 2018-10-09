@@ -1,42 +1,31 @@
-# Server
-<h3><b>A Server that mediates Raspberry Pi 3 and Android apps</b></h3>
+# CCTV
+<h3><b>A CCTV that watch specific area</b></h3>
 
 # DEMO
 <p align="center">
-    <img src="/images/server_demo.gif", width="480">
+    <img src="/images/cctv_demo.gif", width="480">
 </p>
 
 # Features
-- Image streaming between CCTV and client.
-- Fire detection and notification.
-- Access to Real-time database in Firebase.
-- Recording in a video format per day.
+- Sending the frames to server in real time
 
 # Prerequisites
-- Windows10
-- Anaconda3 
-- Python3 (3.6, but firebase library doesn't work in 3.7)
-- CUDA 9.0
-- cuDNN 7.2.1
+- OpenCV
 
 # Installation
-- Install TensorFlow (In my case, I installed version 1.9.0)
+- Update the Raspberry Pi 3
 
-      Ex) pip install tensorflow==1.9.0
-      pip install tensorflow-gpu==[version]
+      sudo apt-get update
+      sudo apt-get dist-upgrade
 
 - Install OpenCV
         
-      conda install -c menpo opencv
-    
-- Install FCM
-        
-      pip install pyfcm
-    
-- Install Firebase
-        
-      pip install requests       
-      pip install python-firebase
+      sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev
+      sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+      sudo apt-get install libxvidcore-dev libx264-dev
+      sudo apt-get install qt4-dev-tools
+      
+      pip3 install opencv-python
 
 # Run
-    python Object_detection.py
+    python camera.py
