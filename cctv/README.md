@@ -7,7 +7,7 @@
 </p>
 
 # Features
-- Sending the frames to server in real time
+- Send the frames to server in real time
 
 # Prerequisites
 - Python 3.5+
