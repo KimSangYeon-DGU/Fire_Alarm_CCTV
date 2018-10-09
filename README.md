@@ -3,7 +3,6 @@
 
 # DEMO
 <p align="left">
-    <p class="absolute-text">Hey I am text on an Image.</a></P>
     <img src="images/cctv_demo.gif", width="288">
     <img src="images/server_demo.gif", width="288">
     <img src="images/client_demo2.gif", width="288">
