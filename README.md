@@ -28,7 +28,9 @@
 
 # TODO List
 
-<b>18. Maintain & Upgrade this project</b>
+<b>18. Maintain & Upgrade this project.</b>
+
+<b>19. Build on AWS server for demonstration.</b>
     
 # DONE List
 <b>1. Gather the information</b>
