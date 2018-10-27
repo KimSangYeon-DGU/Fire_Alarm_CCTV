@@ -31,6 +31,10 @@
 <b>18. Maintain & Upgrade this project.</b>
 
 <b>19. Build on AWS server for demonstration.</b>
+
+<b>20. License validation</b>
+
+<b>21. Function Test</b>
     
 # DONE List
 <b>1. Gather the information</b>
