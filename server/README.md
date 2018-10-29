@@ -22,7 +22,7 @@
 # Installation
 - Install TensorFlow (In my case, I installed version 1.9.0)
 
-      Ex) pip install tensorflow==1.9.0
+      Ex) pip install tensorflow-gpu==1.9.0
       pip install tensorflow-gpu==[version]
 
 - Install OpenCV
