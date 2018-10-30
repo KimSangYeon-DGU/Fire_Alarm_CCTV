@@ -426,6 +426,7 @@ public class MainActivity extends AppCompatActivity {
                     infoItems.add(1, new Item("Installation date: " + _inJson.getString("install_date"), false));
                     infoItems.add(2, new Item("Location: " + _inJson.getString("location"), false));
                     infoItems.add(3, new Item("CALL: " + _inJson.getString("call"), false));
+                    infoItems.add(4, new Item("License: " + _inJson.getString("license"), false));
                 } else if (this.dataType.equals("log")) {
                     int numOfLogs = _inJson.getInt("num_of_logs");
                     if (0 < numOfLogs) {
