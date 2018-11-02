@@ -30,8 +30,6 @@
 
 <b>18. Maintain & Upgrade this project.</b>
 
-<b>20. License validation</b>
-
 <b>21. Function Test (10/31)</b>
     
 # DONE List
@@ -76,6 +74,8 @@
     (Done: Server recording, and removing oldest file when it is expiring, Getting detection result from server using log)
 
 <b>19. Build on AWS server for demonstration.</b>
+
+<b>20. License validation</b>
 
 <b>[DEMO]</b>
 
