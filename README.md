@@ -1,3 +1,6 @@
+# NOTICE 
+It will be moved to [OpenFDS](https://github.com/OpenFDS) organization on November 29.
+
 # 🔥 2018 OSS Fire Alarm CCTV 🔥
 <h3><b>This is a repository for 2018 OSS Grand Developers Challenge (2018/09/01 ~ 2018/10/1)</b></h3>
 
