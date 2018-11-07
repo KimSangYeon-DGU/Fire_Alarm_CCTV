@@ -1,4 +1,4 @@
-# **NOTICE** 
+# NOTICE
 <b>It will be moved to [OpenFDS](https://github.com/OpenFDS) organization on November 29.</b>
 
 # 🔥 2018 OSS Fire Alarm CCTV 🔥
