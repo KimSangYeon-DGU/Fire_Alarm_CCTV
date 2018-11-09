@@ -34,7 +34,7 @@
 <b>18. Maintain & Upgrade this project.</b>
     
 # DONE List
-<b> Gather the information</b>
+- <b> Gather the information</b>
         
 <b> Test Demo model on Raspberry Pi 3 B+</b>
 
