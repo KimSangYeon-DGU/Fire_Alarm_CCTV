@@ -37,6 +37,7 @@
     
 # DONE List
 - Gather the information   
+
 - Test Demo model on Raspberry Pi 3 B+
 
 - Make train dataset
