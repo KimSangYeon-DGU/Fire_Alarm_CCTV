@@ -47,12 +47,14 @@
 - <b> If needed, increase a performance of the model</b>
     
 - <b> Make server application</b> 
-    
+    ```
     (Done: receive JSON data from android)
+    ```
 
 - <b> Make client application</b> 
-    
+    ```
     (Done: Recycler Popup window, splash, Push alarm, HD, Call 119)
+    ```
 
 - <b> System Test</b>
 
@@ -71,8 +73,9 @@
 - <b> Make a database server </b>
     
 - <b> Additional functionality.</b>
-    
+    ```
     (Done: Server recording, and removing oldest file when it is expiring, Getting detection result from server using log)
+    ```
 
 - <b> Build on AWS server for demonstration.</b>
 
@@ -81,8 +84,9 @@
 - <b> Function Test (10/31)</b>
 
 - <b>[DEMO]</b>
-
-    - Make demo server and client(success connecting python server and android client using TCP socket.)
+    ```
+    Make demo server and client(success connecting python server and android client using TCP socket.)
+    ```
 
 # Detection Results
 <p align="left">
