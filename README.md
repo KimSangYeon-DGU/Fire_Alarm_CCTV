@@ -31,59 +31,61 @@
 
 # TODO List
 
-<b>18. Maintain & Upgrade this project.</b>
+- Maintain & Upgrade this project.
+
+- Make research graphs for performance
     
 # DONE List
-- <b> Gather the information</b>
+- Gather the information
         
-- <b> Test Demo model on Raspberry Pi 3 B+</b>
+- Test Demo model on Raspberry Pi 3 B+
 
-- <b> Make train dataset</b>
+- Make train dataset
     
-- <b> First train custom model</b>
+- First train custom model
 
-- <b> Test model</b>
+- Test model
 
-- <b> If needed, increase a performance of the model</b>
+- If needed, increase a performance of the model
     
-- <b> Make server application</b> 
+- Make server application
     ```
     (Done: receive JSON data from android)
     ```
 
-- <b> Make client application</b> 
+- Make client application
     ```
     (Done: Recycler Popup window, splash, Push alarm, HD, Call 119)
     ```
 
-- <b> System Test</b>
+- System Test
 
-- <b> Communication between Raspberry Pi and Python server.</b>
+- Communication between Raspberry Pi and Python server
 
-- <b> Make a final report and demonstration video</b>
+- Make a final report and demonstration video
 
-- <b> Build train enviornment</b>
+- Build train enviornment
 
-- <b> Make up datasets for testing model's accuracy.</b>  
+- Make up datasets for testing model's accuracy
 
-- <b> Check clear commumication among Raspberry Pi, Python Server and Android Client </b>
+- Check clear commumication among Raspberry Pi, Python Server and Android Client
    
-- <b> Design a user-friendly UI/UX on android client app</b>
+- Design a user-friendly UI/UX on android client app
 
-- <b> Make a database server </b>
+- Make a database server
     
-- <b> Additional functionality.</b>
+- Additional functionality.
     ```
     (Done: Server recording, and removing oldest file when it is expiring, Getting detection result from server using log)
     ```
 
-- <b> Build on AWS server for demonstration.</b>
+- Build on AWS server for demonstration.
 
-- <b> License validation</b>
+- License validation
 
-- <b> Function Test (10/31)</b>
+- Function Test (10/31)
 
-- <b>[DEMO]</b>
+- [DEMO]
     ```
     Make demo server and client(success connecting python server and android client using TCP socket.)
     ```
