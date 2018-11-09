@@ -34,51 +34,51 @@
 <b>18. Maintain & Upgrade this project.</b>
     
 # DONE List
-<b>1. Gather the information</b>
+<b> Gather the information</b>
         
-<b>2. Test Demo model on Raspberry Pi 3 B+</b>
+<b> Test Demo model on Raspberry Pi 3 B+</b>
 
-<b>3. Make train dataset</b>
+<b> Make train dataset</b>
     
-<b>4. First train custom model</b>
+<b> First train custom model</b>
 
-<b>5. Test model</b>
+<b> Test model</b>
 
-<b>6. If needed, increase a performance of the model</b>
+<b> If needed, increase a performance of the model</b>
     
-<b>7. Make server application</b> 
+<b> Make server application</b> 
     
     (Done: receive JSON data from android)
 
-<b>8. Make client application</b> 
+<b> Make client application</b> 
     
     (Done: Recycler Popup window, splash, Push alarm, HD, Call 119)
 
-<b>9. System Test</b>
+<b> System Test</b>
 
-<b>10. Communication between Raspberry Pi and Python server.</b>
+<b> Communication between Raspberry Pi and Python server.</b>
 
-<b>11. Make a final report and demonstration video</b>
+<b> Make a final report and demonstration video</b>
 
-<b>12. Build train enviornment</b>
+<b> Build train enviornment</b>
 
-<b>13. Make up datasets for testing model's accuracy.</b>  
+<b> Make up datasets for testing model's accuracy.</b>  
 
-<b>14. Check clear commumication among Raspberry Pi, Python Server and Android Client </b>
+<b> Check clear commumication among Raspberry Pi, Python Server and Android Client </b>
    
-<b>15. Design a user-friendly UI/UX on android client app</b>
+<b> Design a user-friendly UI/UX on android client app</b>
 
-<b>16. Make a database server </b>
+<b> Make a database server </b>
     
-<b>17. Additional functionality.</b>
+<b> Additional functionality.</b>
     
     (Done: Server recording, and removing oldest file when it is expiring, Getting detection result from server using log)
 
-<b>19. Build on AWS server for demonstration.</b>
+<b> Build on AWS server for demonstration.</b>
 
-<b>20. License validation</b>
+<b> License validation</b>
 
-<b>21. Function Test (10/31)</b>
+<b> Function Test (10/31)</b>
 
 <b>[DEMO]</b>
 
