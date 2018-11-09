@@ -36,8 +36,7 @@
 - Make research graphs for performance check
     
 # DONE List
-- Gather the information
-        
+- Gather the information   
 - Test Demo model on Raspberry Pi 3 B+
 
 - Make train dataset
