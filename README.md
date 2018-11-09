@@ -36,51 +36,51 @@
 # DONE List
 - <b> Gather the information</b>
         
-<b> Test Demo model on Raspberry Pi 3 B+</b>
+- <b> Test Demo model on Raspberry Pi 3 B+</b>
 
-<b> Make train dataset</b>
+- <b> Make train dataset</b>
     
-<b> First train custom model</b>
+- <b> First train custom model</b>
 
-<b> Test model</b>
+- <b> Test model</b>
 
-<b> If needed, increase a performance of the model</b>
+- <b> If needed, increase a performance of the model</b>
     
-<b> Make server application</b> 
+- <b> Make server application</b> 
     
     (Done: receive JSON data from android)
 
-<b> Make client application</b> 
+- <b> Make client application</b> 
     
     (Done: Recycler Popup window, splash, Push alarm, HD, Call 119)
 
-<b> System Test</b>
+- <b> System Test</b>
 
-<b> Communication between Raspberry Pi and Python server.</b>
+- <b> Communication between Raspberry Pi and Python server.</b>
 
-<b> Make a final report and demonstration video</b>
+- <b> Make a final report and demonstration video</b>
 
-<b> Build train enviornment</b>
+- <b> Build train enviornment</b>
 
-<b> Make up datasets for testing model's accuracy.</b>  
+- <b> Make up datasets for testing model's accuracy.</b>  
 
-<b> Check clear commumication among Raspberry Pi, Python Server and Android Client </b>
+- <b> Check clear commumication among Raspberry Pi, Python Server and Android Client </b>
    
-<b> Design a user-friendly UI/UX on android client app</b>
+- <b> Design a user-friendly UI/UX on android client app</b>
 
-<b> Make a database server </b>
+- <b> Make a database server </b>
     
-<b> Additional functionality.</b>
+- <b> Additional functionality.</b>
     
     (Done: Server recording, and removing oldest file when it is expiring, Getting detection result from server using log)
 
-<b> Build on AWS server for demonstration.</b>
+- <b> Build on AWS server for demonstration.</b>
 
-<b> License validation</b>
+- <b> License validation</b>
 
-<b> Function Test (10/31)</b>
+- <b> Function Test (10/31)</b>
 
-<b>[DEMO]</b>
+- <b>[DEMO]</b>
 
     - Make demo server and client(success connecting python server and android client using TCP socket.)
 
