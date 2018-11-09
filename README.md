@@ -33,7 +33,7 @@
 
 - Maintain & Upgrade this project.
 
-- Make research graphs for performance
+- Make research graphs for performance check
     
 # DONE List
 - Gather the information
