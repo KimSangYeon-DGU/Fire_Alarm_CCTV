@@ -34,6 +34,8 @@
 - Maintain & Upgrade this project.
 
 - Make research graphs for performance check
+
+- Fire & smoke data collecting
     
 # DONE List
 - Gather the information   
