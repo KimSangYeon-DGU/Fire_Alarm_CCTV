@@ -36,6 +36,8 @@
 - Make research graphs for performance check
 
 - Fire & smoke data collecting
+
+- Apply latest deep learning model, for example, YOLO v3.
     
 # DONE List
 - Gather the information   
