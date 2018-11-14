@@ -28,11 +28,15 @@
 
 - Maintain & Upgrade this project.
 
-- Make research graphs for performance check
+- Make performance research graphs.
+
+- Add Smoke detection.
 
 - Fire & smoke data collecting
 
 - Apply latest deep learning model, for example, YOLO v3.
+
+- Data augmentation.
     
 # DONE List
 - Gather the information   
