@@ -22,18 +22,6 @@
 </p>
 
 # TODO List
-
-- Maintain & Upgrade this project.
-
-- Make performance research graphs.
-
-- Add Smoke detection.
-
-- Fire & smoke data collecting
-
-- Apply latest deep learning model, for example, YOLO v3.
-
-- Data augmentation.
     
 # DONE List
 - Gather the information   
