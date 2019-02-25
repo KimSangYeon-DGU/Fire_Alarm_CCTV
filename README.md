@@ -10,7 +10,7 @@
 
 # Demo(Visualization mode)
 <p align="center">
-    <img src="images/result.gif", width="288">
+    <img src="images/result.gif", width="480">
 </p>
 
 # Features
