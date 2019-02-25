@@ -8,6 +8,10 @@
     <img src="images/client_demo2.gif", width="288">
 </p>
 
+# Demo(Visualization mode)
+<p align="center">
+    <img src="images/result.gif", width="288">
+</p>
 
 # Features
 - Image streaming between Raspberry Pi and Python server.
