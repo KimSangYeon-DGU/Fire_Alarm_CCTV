@@ -3,9 +3,9 @@
 
 # Demo(CCTV - Server - Client)
 <p align="left">
-    <img src="images/cctv_demo.gif", width="278">
-    <img src="images/server_demo.gif", width="278">
-    <img src="images/client_demo2.gif", width="278">
+    <img src="images/cctv_demo.gif", width="224">
+    <img src="images/server_demo.gif", width="224">
+    <img src="images/client_demo2.gif", width="224">
 </p>
 
 # Demo(Visualization mode)
